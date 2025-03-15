@@ -1,24 +1,24 @@
 [general]
-title = "Cafe Directory"
+title = "inDearborn"
 logo = ""
-iconLogo = "tabler:coffee"
+iconLogo = "tabler:directions"
 
 [general.seo]
-name = "Cafe Directory"
-description = "Find the best nuxt starter kits."
-url = "https://nuxtstarters.com"
+name = "inDearborn"
+description = "Find local businesses, in Dearborn."
+url = "https://indearborn.com"
 
 [directory.data]
-source = "mock"  # default, mock, sheets
+source = "default" # default, mock, sheets
 links = "normal"
 
 # [directory.data.sheets]
 # key = "1BKVVFysQT8ZuPY8hUp--jwTrN-U20TrtML0idECIWmc"
 
 [directory.search]
-placeholder = "Search among {0} agent frameworks"
+placeholder = "Search among {0} local businesses"
 showCount = true
-icon = "tabler:bow"
+icon = "tabler:search"
 
 [directory.search.tags]
 display = "show-all" # options: none,select,show-all

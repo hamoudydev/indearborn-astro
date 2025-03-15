@@ -8,25 +8,58 @@ import { Icon } from "astro-icon/components";
 const siteTitle = themeConfig.general.title;
 const title = frontmatter?.title || siteTitle;
 const link = frontmatter?.link;
+const instagram = frontmatter?.instagram;
+const phone = frontmatter?.phone;
+const location = frontmatter?.location;
 const description = frontmatter?.description;
-const linkText = link?.replace(/^https?:\/\//, "");
+const linkText = link?.replace(/^https?:\/\/[^\/]+/, "");
+const instagramText = instagram?.replace(/^https?:\/\/[^\/]+\/.*/, "");
+const phoneText = phone?.replace(/^tel:.*/, "");
+const locationText = location?.replace(/^https?:\/\/[^\/]+\/.*/, "");
 ---
 
 <BaseLayout>
-  <div class="max-w-2xl w-full mx-auto py-20">
+  <div class="max-w-2xl w-full mx-auto py-20 px-8">
     <div class="mb-10">
       <div class="flex justify-between items-center">
         <h1 class="font-bold text-4xl">{title}</h1>
+      </div>
+      <p class="text-gray-400 mt-2.5 mb-2.5">{description}</p>
+
+      <p class="mt-5 mb-2.5">
         {
           link && (
-            <a class="inline-flex items-center gap-1 font-medium" href={link}>
+            <a class="inline-flex items-center gap-1 font-medium px-4" href={link}>
               {linkText}
-              <Icon name="tabler:arrow-up-right" />
+              <Icon name="tabler:world-www" size="50px" title="website" />
             </a>
           )
         }
-      </div>
-      <p class="text-gray-400 mt-2.5">{description}</p>
+        {
+          instagram && (
+            <a class="inline-flex items-center gap-1 font-medium px-4" href={instagram}>
+              {instagramText}
+              <Icon name="tabler:brand-instagram" size="50px" title="instagram" />
+            </a>
+          )
+        }
+        {
+          phone && (
+            <a class="inline-flex items-center gap-1 font-medium px-4" href={phone}>
+              {phoneText}
+              <Icon name="tabler:phone" size="50px" title="phone" />
+            </a>
+          )
+        }
+        {
+          location && (
+            <a class="inline-flex items-center gap-1 font-medium px-4" href={location}>
+              {locationText}
+              <Icon name="tabler:map-pin" size="50px" title="location" />
+            </a>
+          )
+        }
+      </p>
     </div>
 
     <AppProse>
