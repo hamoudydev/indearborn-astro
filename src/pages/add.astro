@@ -10,7 +10,7 @@ import Layout from '../layouts/BaseLayout.astro';
       <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-100 sm:text-xl">Businesses must be located in Dearborn or Dearborn Heights to be listed. Some exceptions will be made to businesses that operate from a different city but serve Dearborn and Dearborn Heights (electricians, rental companies, etc.).</p>
       <form action="https://submit-form.com/pGC7iLyL8" method="post" class="space-y-8">
         <!-- Hidden field for Formspark -->
-        <input type="hidden" name="_redirect" value="https://indearborn.com/success"/>
+        <!-- <input type="hidden" name="_redirect" value="https://indearborn.com/success"/> -->
         <input type="hidden" name="_formspark" value="pGC7iLyL8" />
         <input type="hidden" name="_email.subject" value="A business is requesting to be added to inDearborn" />
         <input type="hidden" name="_email.from" value="inDearborn Add" />
@@ -19,8 +19,8 @@ import Layout from '../layouts/BaseLayout.astro';
               <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" required>
           </div>
           <div>
-            <label for="number" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Phone</label>
-            <input type="text" id="number" name="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" required>
+            <label for="phone" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Phone</label>
+            <input type="text" id="phone" name="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" required>
         </div>
         <div>
             <label for="address" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Address</label>
@@ -39,12 +39,12 @@ import Layout from '../layouts/BaseLayout.astro';
               <input type="text" id="short" name="short" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
           </div>
           <div>
-            <label for="tags" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Category</label><p class="text-xs text-gray-500 dark:text-gray-100">You may enter more than one category. This helps users find your business when searching.</p>
-            <input type="text" id="tags" name="categories" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
+            <label for="categories" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Category</label><p class="text-xs text-gray-500 dark:text-gray-100">You may enter more than one category. This helps users find your business when searching.</p>
+            <input type="text" id="categories" name="categories" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
         </div>
           <div class="sm:col-span-2">
               <label for="long" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Long Description</label><p class="text-xs text-gray-500 dark:text-gray-100">This can be as long as you want. This will show up for your business page once the user clicks on your profile page. Be sure to include any information you'd want users to know about your business. If you have multiple locations and phone numbers, you can note that here.</p>
-              <textarea id="message" name="long" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+              <textarea id="long" name="long" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
           </div>
           <p class="text-xs text-gray-500 dark:text-gray-100">PLEASE NOTE: All businesses subject to manual review before being added.</p>
 
@@ -54,46 +54,51 @@ import Layout from '../layouts/BaseLayout.astro';
 </section>
 </Layout>
 <script is:inline>
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.querySelector("form");
-      const submitButton = form.querySelector("button[type='submit']");
-  
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent the default form submission
-  
-        // Update the button text
-        submitButton.textContent = "Submitting...";
-        submitButton.disabled = true; // Disable the button to prevent multiple submissions
-  
-        try {
-          // Submit the form data using Fetch API
-          const formData = new FormData(form);
-          const response = await fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: {
-              Accept: "application/json",
-            },
-          });
-  
-          if (response.ok) {
-            // If the submission is successful, update the button text
-            submitButton.textContent = "Submitted!";
-            // Optionally, redirect the user to the success page
-            window.location.href = "https://indearborn.com/success";
-          } else {
-            // If there's an error, reset the button text
-            submitButton.textContent = "Submit";
-            submitButton.disabled = false;
-            alert("There was an error submitting the form. Please try again.");
-          }
-        } catch (error) {
-          // Handle any network errors
-          submitButton.textContent = "Submit";
-          submitButton.disabled = false;
-          alert("There was an error submitting the form. Please try again.");
-        }
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const submitButton = form.querySelector("button[type='submit']");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Update the button text
+    submitButton.textContent = "Submitting...";
+    submitButton.disabled = true; // Disable the button to prevent multiple submissions
+
+    try {
+      // Submit the form data using Fetch API
+      const formData = new FormData(form);
+      console.log("Form Data:", Object.fromEntries(formData.entries())); // Log form data
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
-    });
+
+      console.log("Response Status:", response.status); // Log response status
+
+      if (response.ok) {
+        // If the submission is successful, update the button text
+        submitButton.textContent = "Submitted!";
+        // Optionally, redirect the user to the success page
+       // window.location.href = "https://indearborn.com/success";
+      } else {
+        // If there's an error, reset the button text
+        submitButton.textContent = "Submit";
+        submitButton.disabled = false;
+        alert("There was an error submitting the form. Please try again.");
+      }
+    } catch (error) {
+      // Handle any network errors
+      console.error("Submission Error:", error); // Log the error
+      submitButton.textContent = "Submit";
+      submitButton.disabled = false;
+      alert("There was an error submitting the form. Please try again.");
+    }
+  });
+});
   </script>
 
