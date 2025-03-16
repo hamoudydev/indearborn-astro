@@ -12,10 +12,10 @@ const instagram = frontmatter?.instagram;
 const phone = frontmatter?.phone;
 const location = frontmatter?.location;
 const description = frontmatter?.description;
-const linkText = link?.replace(/^https?:\/\/[^\/]+/, "");
-const instagramText = instagram?.replace(/^https?:\/\/[^\/]+\/.*/, "");
-const phoneText = phone?.replace(/^tel:.*/, "");
-const locationText = location?.replace(/^https?:\/\/[^\/]+\/.*/, "");
+const linkText = link?.replace(/^.*/, "");
+const instagramText = instagram?.replace(/^.*/, "");
+const phoneText = phone?.replace(/^.*/, "");
+const locationText = location?.replace(/^.*/, "");
 ---
 
 <BaseLayout>
