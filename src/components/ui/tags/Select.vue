@@ -39,9 +39,9 @@ function addTagWithEvent(event: Event) {
       {{ myTag }}
     </div>
     <select @change="addTagWithEvent"
-      class="border border-dashed border-gray-300 rounded-lg font-semibold text-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 focus:ring-primary-500 focus:ring-2 focus:border-none ring-offset-4">
+      class="border border-dashed w-50 border-gray-300 rounded-lg font-semibold text-gray-500 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-400 focus:ring-primary-500 focus:ring-2 focus:border-none ring-offset-4">
       <option value="" disabled selected>
-        Select a tag
+        Filter Categories
       </option>
       <option v-for="tag in availableTags" :key="tag.name" :value="tag.name">{{ tag.name }}</option>
     </select>
