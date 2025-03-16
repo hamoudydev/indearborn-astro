@@ -12,11 +12,11 @@ const allListings = (await getListings()).sort(
 <script>
   import { search, tags } from "../../store.js";
 
-function filterListings() {
+  function filterListings() {
   const listingsArray = document.querySelectorAll(".listing");
   const currentSearch = search.get().trim().toLowerCase();
-  const selectedTags = tags.get();
-  const selectedTagsSet = new Set(selectedTags); // For efficient lookup
+  const selectedTags: string[] = tags.get(); // Explicitly type as string[]
+  const selectedTagsSet: Set<string> = new Set(selectedTags); // Explicitly type as Set<string>
 
   for (const element of listingsArray) {
     // Get content for search filtering
@@ -26,15 +26,15 @@ function filterListings() {
 
     // Get tags from data attribute
     if (element instanceof HTMLElement) {
-      const elementTags = element.dataset.tags?.split(",") || [];
-      const elementTagsLower = elementTags.map(tag => tag.trim().toLowerCase());
+      const elementTags: string[] = element.dataset.tags?.split(",") || []; // Explicitly type as string[]
+      const elementTagsLower: string[] = elementTags.map(tag => tag.trim().toLowerCase()); // Explicitly type as string[]
 
       // Determine if the listing matches
       const matchesSearch = currentSearch === "" || 
                             content.includes(currentSearch) || 
                             elementTagsLower.some(tag => tag.includes(currentSearch));
       const matchesTags = selectedTags.length === 0 ||
-                          elementTags.some(tag => selectedTagsSet.has(tag.trim()));
+                          elementTags.some((tag: string) => selectedTagsSet.has(tag.trim())); // Explicitly type tag as string
 
       // Show or hide the listing
       if (matchesSearch && matchesTags) {
