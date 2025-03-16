@@ -75,7 +75,7 @@ color = "green"
 
 [header.banner]
 show = true
-text = "Advertise your business"
+text = "Advertise with us"
 link = "/advertise"
 brandText = "inDearborn"
 
