@@ -55,7 +55,7 @@ title = "{0} Businesses"
 
 [[directory.tags]]
 key = "restaurant"
-name = "Restaurant"
+name = "Restaurants"
 color = "blue"
 
 [[directory.tags]]
@@ -65,12 +65,12 @@ color = "green"
 
 [[directory.tags]]
 key = "mortgage"
-name = "Mortgage"
+name = "Mortgage Broker"
 color = "green"
 
 [[directory.tags]]
-key = "consulting"
-name = "Consulting"
+key = "hvac"
+name = "HVAC"
 color = "green"
 
 [header.banner]
@@ -97,7 +97,7 @@ target = "_blank"
 
 [header.actionButton]
 text = "Add your business"
-href = "/submit"
+href = "/add"
 
 [footer]
 description = "A directory of local businesses in Dearborn and Dearborn Heights"
