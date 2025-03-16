@@ -1,5 +1,4 @@
 ---
-import type { ThemeConfig } from "../../types/ThemeConfig";
 import { Icon } from "astro-icon/components";
 import ColorSelector from "./header/ColorSelector.astro";
 import Logo from "./Logo.astro";
@@ -12,7 +11,7 @@ const isActive = (path: string, currentPath: string | undefined) => {
 };
 
 // Get the current path safely
-const currentPath = Astro.request.url.pathname;
+const currentPath = new URL(Astro.request.url).pathname;
 ---
 
 <nav class="bg-white dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
@@ -119,8 +118,10 @@ const currentPath = Astro.request.url.pathname;
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileMenuIcon = document.getElementById('mobile-menu-icon');
 
-  mobileMenuButton.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('hidden');
-    mobileMenuIcon.setAttribute('name', isOpen ? 'tabler:baseline-density-medium' : 'tabler:x');
-  });
+  if (mobileMenuButton && mobileMenu && mobileMenuIcon) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('hidden');
+      mobileMenuIcon.setAttribute('name', isOpen ? 'tabler:baseline-density-medium' : 'tabler:x');
+    });
+  }
 </script>
