@@ -29,33 +29,33 @@ const locationText = location?.replace(/^.*/, "");
       <p class="mt-5 mb-2.5">
         {
           link && (
-            <a class="inline-flex items-center gap-1 font-medium pr-4" href={link} target="_blank" rel="noopener noreferrer">
+            <a class="inline-flex items-center gap-1 font-medium px-2" href={link} target="_blank" rel="noopener noreferrer">
               {linkText}
-              <Icon name="tabler:world-www" size="50px" title="website" />
+              <Icon name="lineicons:www-cursor" size="50px" title="website" />
             </a>
           )
         }
         {
           instagram && (
-            <a class="inline-flex items-center gap-1 font-medium px-4" href={instagram} target="_blank" rel="noopener noreferrer">
+            <a class="inline-flex items-center gap-1 font-medium px-2" href={instagram} target="_blank" rel="noopener noreferrer">
               {instagramText}
-              <Icon name="tabler:brand-instagram" size="50px" title="instagram" />
+              <Icon name="lineicons:instagram" size="50px" title="instagram" />
             </a>
           )
         }
         {
           phone && (
-            <a class="inline-flex items-center gap-1 font-medium px-4" href={phone}>
+            <a class="inline-flex items-center gap-1 font-medium px-2" href={phone}>
               {phoneText}
-              <Icon name="tabler:phone" size="50px" title="phone" />
+              <Icon name="lineicons:phone" size="50px" title="phone" />
             </a>
           )
         }
         {
           location && (
-            <a class="inline-flex items-center gap-1 font-medium px-4" href={location} target="_blank" rel="noopener noreferrer">
+            <a class="inline-flex items-center gap-1 font-medium px-2" href={location} target="_blank" rel="noopener noreferrer">
               {locationText}
-              <Icon name="tabler:map-pin" size="50px" title="location" />
+              <Icon name="lineicons:map-marker-1" size="50px" title="location" />
             </a>
           )
         }
