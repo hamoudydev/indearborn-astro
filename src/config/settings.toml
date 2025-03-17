@@ -21,7 +21,7 @@ showCount = true
 icon = "tabler:search"
 
 [directory.search.tags]
-display = "show-all" # options: none,select,show-all
+display = "none" # options: none,select,show-all
 intersection = false
 
 [directory.grid]
