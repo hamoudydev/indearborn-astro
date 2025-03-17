@@ -24,38 +24,38 @@ const locationText = location?.replace(/^.*/, "");
       <div class="flex justify-between items-center">
         <h1 class="font-bold text-4xl">{title}</h1>
       </div>
-      <p class="text-gray-400 mt-2.5 mb-2.5">{description}</p>
+      <p class="text-gray-600 mt-2.5 mb-2.5">{description}</p>
 
-      <p class="mt-5 mb-2.5">
+      <p class="mt-5 mb-2.5 flex flex-wrap gap-4 place-content-center">
         {
           link && (
-            <a class="inline-flex items-center gap-1 font-medium px-2" href={link} target="_blank" rel="noopener noreferrer">
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={link} target="_blank" rel="noopener noreferrer">
               {linkText}
-              <Icon name="lineicons:www-cursor" size="50px" title="website" />
+              <Icon name="tabler:link" size="25px" title="website" />Website
             </a>
           )
         }
         {
           instagram && (
-            <a class="inline-flex items-center gap-1 font-medium px-2" href={instagram} target="_blank" rel="noopener noreferrer">
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={instagram} target="_blank" rel="noopener noreferrer">
               {instagramText}
-              <Icon name="lineicons:instagram" size="50px" title="instagram" />
+              <Icon name="lineicons:instagram" size="25px" title="instagram" />Instagram
             </a>
           )
         }
         {
           phone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2" href={phone}>
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={phone}>
               {phoneText}
-              <Icon name="lineicons:phone" size="50px" title="phone" />
+              <Icon name="tabler:phone" size="25px" title="phone" />Call Now
             </a>
           )
         }
         {
           location && (
-            <a class="inline-flex items-center gap-1 font-medium px-2" href={location} target="_blank" rel="noopener noreferrer">
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={location} target="_blank" rel="noopener noreferrer">
               {locationText}
-              <Icon name="lineicons:map-marker-1" size="50px" title="location" />
+              <Icon name="tabler:location" size="25px" title="location" />Directions
             </a>
           )
         }
