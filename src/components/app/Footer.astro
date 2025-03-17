@@ -11,17 +11,31 @@ const navigation = [
   {
     title: "Directory",
     links: [
-      { title: "Add a Business", link: "/add" },
+    { title: "Add a Business", link: "/add" },
       { title: "Edit a Business", link: "/edit" },
       { title: "Advertise", link: "/advertise" },
       { title: "Analytics", link: "https://us.posthog.com/shared/mjiPyFRqnY_LtGXZEOamOO6rxstKJw" },
     ],
   },
   {
+    title: "Categories",
+    links: config.directory.tags
+      ?.filter((e) => e && e.name)
+      .map((e) => ({
+        title: e.name,
+        link: `/tags/${e.name}`,
+      }))
+      .slice(0, 4),
+  },
+  {
+    title: "Blog",
+    links: [{ title: "Articles", link: "/blog" }],
+  },
+  {
     title: "Legal",
     links: [
-      { title: "Privacy Policy", link: "/privacy-policy" },
-      { title: "Terms of Service", link: "/terms-of-service" },
+      { title: "Privacy Policy", link: "/legal/terms-of-service" },
+      { title: "Terms of Service", link: "/legal/privacy-policy" },
     ],
   },
 ];
@@ -70,8 +84,20 @@ const navigation = [
               </div>
 
               <div class="mt-10 md:mt-0">
+                <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                  {navigation[count + 2].title}
+                </h3>
                 <ul role="list" class="mt-6 space-y-4">
-
+                  {navigation[count + 2].links.map((item) => (
+                    <li>
+                      <a
+                        href={item.link}
+                        class="text-sm leading-6 text-gray-600 dark:text-gray-300 hover:dark:text-gray-400 hover:text-gray-900"
+                      >
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

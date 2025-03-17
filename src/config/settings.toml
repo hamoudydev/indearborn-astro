@@ -21,7 +21,7 @@ showCount = true
 icon = "tabler:search"
 
 [directory.search.tags]
-display = "none" # options: none,select,show-all
+display = "show-all" # options: none,select,show-all
 intersection = false
 
 [directory.grid]
@@ -54,9 +54,9 @@ labelForCard = "Featured ✨"
 title = "{0} Businesses"
 
 [[directory.tags]]
-key = ""
-name = ""
-color = ""
+key = "restaurant"
+name = "Restaurant"
+color = "blue"
 
 [header.banner]
 show = true
