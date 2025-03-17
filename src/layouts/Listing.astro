@@ -10,12 +10,36 @@ const title = frontmatter?.title || siteTitle;
 const link = frontmatter?.link;
 const instagram = frontmatter?.instagram;
 const phone = frontmatter?.phone;
+const eastphone = frontmatter?.eastphone;
+const westphone = frontmatter?.westphone;
+const dearbornphone = frontmatter?.dearbornphone;
+const heightsphone = frontmatter?.heightsphone;
+const storefrontphone = frontmatter?.storefrontphone;
+const truckphone = frontmatter?.truckphone;
 const location = frontmatter?.location;
+const dearbornlocation = frontmatter?.dearbornlocation;
+const heightslocation = frontmatter?.heightslocation;
+const eastlocation = frontmatter?.eastlocation;
+const westlocation = frontmatter?.westlocation;
+const storefront = frontmatter?.storefront;
+const truck = frontmatter?.truck;
 const description = frontmatter?.description;
 const linkText = link?.replace(/^.*/, "");
 const instagramText = instagram?.replace(/^.*/, "");
 const phoneText = phone?.replace(/^.*/, "");
+const dearbornphoneText = dearbornphone?.replace(/^.*/, "");
+const heightsphoneText = heightsphone?.replace(/^.*/, "");
+const eastphoneText = eastphone?.replace(/^.*/, "");
+const westphoneText = westphone?.replace(/^.*/, "");
+const storefrontphoneText = storefrontphone?.replace(/^.*/, "");
+const truckphoneText = truckphone?.replace(/^.*/, "");
 const locationText = location?.replace(/^.*/, "");
+const dearbornlocationText = dearbornlocation?.replace(/^.*/, "");
+const heightslocationText = heightslocation?.replace(/^.*/, "");
+const eastlocationText = eastlocation?.replace(/^.*/, "");
+const westlocationText = westlocation?.replace(/^.*/, "");
+const storefrontText = storefront?.replace(/^.*/, "");
+const truckText = truck?.replace(/^.*/, "");
 ---
 
 <BaseLayout>
@@ -56,6 +80,102 @@ const locationText = location?.replace(/^.*/, "");
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={location} target="_blank" rel="noopener noreferrer">
               {locationText}
               <Icon name="tabler:location" size="25px" title="location" />Directions
+            </a>
+          )
+        }
+        {
+          dearbornphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornphone}>
+              {dearbornphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />Dearborn
+            </a>
+          )
+        }
+        {
+          dearbornlocation && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornlocation} target="_blank" rel="noopener noreferrer">
+              {dearbornlocationText}
+              <Icon name="tabler:location" size="25px" title="location" />Dearborn
+            </a>
+          )
+        }
+        {
+          eastphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={eastphone}>
+              {eastphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />East Dearborn
+            </a>
+          )
+        }
+        {
+          eastlocation && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={eastlocation} target="_blank" rel="noopener noreferrer">
+              {eastlocationText}
+              <Icon name="tabler:location" size="25px" title="location" />East Dearborn
+            </a>
+          )
+        }
+        {
+          westphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={westphone}>
+              {westphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />West Dearborn
+            </a>
+          )
+        }
+        {
+          westlocation && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={westlocation} target="_blank" rel="noopener noreferrer">
+              {westlocationText}
+              <Icon name="tabler:location" size="25px" title="location" />West Dearborn
+            </a>
+          )
+        }
+        {
+          heightsphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={heightsphone}>
+              {heightsphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />Heights
+            </a>
+          )
+        }
+        {
+          heightslocation && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={heightslocation} target="_blank" rel="noopener noreferrer">
+              {heightslocationText}
+              <Icon name="tabler:location" size="25px" title="location" />Heights
+            </a>
+          )
+        }
+        {
+          storefrontphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={storefrontphone}>
+              {storefrontphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />Storefront
+            </a>
+          )
+        }
+        {
+          storefront && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={storefront} target="_blank" rel="noopener noreferrer">
+              {storefrontText}
+              <Icon name="tabler:location" size="25px" title="location" />Storefront
+            </a>
+          )
+        }
+        {
+          truckphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={truckphone}>
+              {truckphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />Truck
+            </a>
+          )
+        }
+        {
+          truck && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={truck} target="_blank" rel="noopener noreferrer">
+              {truckText}
+              <Icon name="tabler:location" size="25px" title="location" />Truck
             </a>
           )
         }
