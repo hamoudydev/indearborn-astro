@@ -21,7 +21,7 @@ showCount = true
 icon = "tabler:search"
 
 [directory.search.tags]
-display = "show-all" # options: none,select,show-all
+display = "none" # options: none,select,show-all
 intersection = false
 
 [directory.grid]
@@ -54,24 +54,9 @@ labelForCard = "Featured ✨"
 title = "{0} Businesses"
 
 [[directory.tags]]
-key = "restaurant"
-name = "Restaurants"
-color = "blue"
-
-[[directory.tags]]
-key = "real estate"
-name = "real estate"
-color = "green"
-
-[[directory.tags]]
-key = "mortgage"
-name = "Mortgage Broker"
-color = "green"
-
-[[directory.tags]]
-key = "hvac"
-name = "HVAC"
-color = "green"
+key = ""
+name = ""
+color = ""
 
 [header.banner]
 show = true
