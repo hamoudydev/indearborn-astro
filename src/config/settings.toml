@@ -1,7 +1,7 @@
 [general]
 title = "inDearborn"
 logo = ""
-iconLogo = "tabler:directions"
+iconLogo = "tabler:search"
 
 [general.seo]
 name = "inDearborn"
