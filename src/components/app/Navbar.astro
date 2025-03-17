@@ -66,8 +66,8 @@ const currentPath = new URL(Astro.request.url).pathname;
       <!-- Action button and color selector -->
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <div class="flex gap-2 items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <ColorSelector v-if="config?.navbar?.colorModeSelector" class="hidden md:flex" />
-          <a
+<!--          <ColorSelector v-if="config?.navbar?.colorModeSelector" class="hidden md:flex" />
+-->          <a
             href={config?.header.actionButton?.href}
             class="hidden md:block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >
