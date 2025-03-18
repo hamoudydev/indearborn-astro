@@ -51,8 +51,13 @@ const truckText = truck?.replace(/^.*/, "");
       <p class="text-gray-600 mt-2.5 mb-2.5">{description}</p>
 
       <div class="relative mt-5 mb-2.5">
-        <!-- Scrollable Container -->
-        <div id="scrollable-container" class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+        <!-- Left Arrow -->
+        <div id="left-arrow" class="hidden absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
+          <Icon name="tabler:arrow-left" color="white" size="15px" title="left" />
+        </div>
+      
+        <!-- Scrollable Content -->
+        <div id="scrollable-content" class="overflow-x-auto whitespace-nowrap hide-scrollbar">
           <div class="inline-flex gap-4">
         {
           link && (
@@ -183,18 +188,59 @@ const truckText = truck?.replace(/^.*/, "");
           )
         }
       </div></div>
-
-  <!-- Arrow Indicator -->
-  <div id="scroll-indicator" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hidden">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-    </svg>
-  </div>
-</div>
+      <div id="right-arrow" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
+        <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />
+      </div>
     </div>
+    <p class="mt-10" />
     <AppProse>
       <slot />
     </AppProse>
   </div>
 </BaseLayout>
 
+<style>
+  .hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+</style>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+  const scrollableContent = document.getElementById('scrollable-content');
+  const leftArrow = document.getElementById('left-arrow');
+  const rightArrow = document.getElementById('right-arrow');
+
+  scrollableContent.addEventListener('scroll', function () {
+    if (scrollableContent.scrollLeft > 0) {
+      leftArrow.classList.remove('hidden');
+    } else {
+      leftArrow.classList.add('hidden');
+    }
+
+    if (scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth) {
+      rightArrow.classList.remove('hidden');
+    } else {
+      rightArrow.classList.add('hidden');
+    }
+  });
+
+  leftArrow.addEventListener('click', function () {
+    scrollableContent.scrollBy({
+      left: -200, // Adjust the scroll distance as needed
+      behavior: 'smooth'
+    });
+  });
+
+  rightArrow.addEventListener('click', function () {
+    scrollableContent.scrollBy({
+      left: 200, // Adjust the scroll distance as needed
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
