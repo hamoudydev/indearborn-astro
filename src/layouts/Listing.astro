@@ -50,7 +50,10 @@ const truckText = truck?.replace(/^.*/, "");
       </div>
       <p class="text-gray-600 mt-2.5 mb-2.5">{description}</p>
 
-      <p class="mt-5 mb-2.5 flex flex-wrap gap-4 place-content-center">
+      <div class="relative mt-5 mb-2.5">
+        <!-- Scrollable Container -->
+        <div id="scrollable-container" class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+          <div class="inline-flex gap-4">
         {
           link && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={link} target="_blank" rel="noopener noreferrer">
@@ -179,11 +182,45 @@ const truckText = truck?.replace(/^.*/, "");
             </a>
           )
         }
-      </p>
-    </div>
+      </div></div>
 
+  <!-- Arrow Indicator -->
+  <div id="scroll-indicator" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </div>
+</div>
+    </div>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const scrollableContainer = document.getElementById('scrollable-container');
+        const scrollIndicator = document.getElementById('scroll-indicator');
+    
+        // Check if the container is scrollable
+        const isScrollable = scrollableContainer.scrollWidth > scrollableContainer.clientWidth;
+    
+        // Show/hide the arrow based on scrollability
+        if (isScrollable) {
+          scrollIndicator.classList.remove('hidden');
+        } else {
+          scrollIndicator.classList.add('hidden');
+        }
+    
+        // Optional: Hide the arrow when the user scrolls to the end
+        scrollableContainer.addEventListener('scroll', function () {
+          if (scrollableContainer.scrollLeft + scrollableContainer.clientWidth >= scrollableContainer.scrollWidth) {
+            scrollIndicator.classList.add('hidden');
+          } else {
+            scrollIndicator.classList.remove('hidden');
+          }
+        });
+      });
+    </script>
     <AppProse>
       <slot />
     </AppProse>
   </div>
 </BaseLayout>
+
