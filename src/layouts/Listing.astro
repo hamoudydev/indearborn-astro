@@ -192,32 +192,6 @@ const truckText = truck?.replace(/^.*/, "");
   </div>
 </div>
     </div>
-    
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const scrollableContainer = document.getElementById('scrollable-container');
-        const scrollIndicator = document.getElementById('scroll-indicator');
-    
-        // Check if the container is scrollable
-        const isScrollable = scrollableContainer.scrollWidth > scrollableContainer.clientWidth;
-    
-        // Show/hide the arrow based on scrollability
-        if (isScrollable) {
-          scrollIndicator.classList.remove('hidden');
-        } else {
-          scrollIndicator.classList.add('hidden');
-        }
-    
-        // Optional: Hide the arrow when the user scrolls to the end
-        scrollableContainer.addEventListener('scroll', function () {
-          if (scrollableContainer.scrollLeft + scrollableContainer.clientWidth >= scrollableContainer.scrollWidth) {
-            scrollIndicator.classList.add('hidden');
-          } else {
-            scrollIndicator.classList.remove('hidden');
-          }
-        });
-      });
-    </script>
     <AppProse>
       <slot />
     </AppProse>
