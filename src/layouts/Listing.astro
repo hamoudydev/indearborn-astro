@@ -9,6 +9,8 @@ const siteTitle = themeConfig.general.title;
 const title = frontmatter?.title || siteTitle;
 const link = frontmatter?.link;
 const instagram = frontmatter?.instagram;
+const facebook = frontmatter?.facebook;
+const youtube = frontmatter?.youtube;
 const phone = frontmatter?.phone;
 const eastphone = frontmatter?.eastphone;
 const westphone = frontmatter?.westphone;
@@ -17,6 +19,7 @@ const heightsphone = frontmatter?.heightsphone;
 const storefrontphone = frontmatter?.storefrontphone;
 const truckphone = frontmatter?.truckphone;
 const location = frontmatter?.location;
+const google = frontmatter?.google;
 const dearbornlocation = frontmatter?.dearbornlocation;
 const heightslocation = frontmatter?.heightslocation;
 const eastlocation = frontmatter?.eastlocation;
@@ -26,6 +29,8 @@ const truck = frontmatter?.truck;
 const description = frontmatter?.description;
 const linkText = link?.replace(/^.*/, "");
 const instagramText = instagram?.replace(/^.*/, "");
+const facebookText = facebook?.replace(/^.*/, "");
+const youtubeText = youtube?.replace(/^.*/, "");
 const phoneText = phone?.replace(/^.*/, "");
 const dearbornphoneText = dearbornphone?.replace(/^.*/, "");
 const heightsphoneText = heightsphone?.replace(/^.*/, "");
@@ -34,6 +39,7 @@ const westphoneText = westphone?.replace(/^.*/, "");
 const storefrontphoneText = storefrontphone?.replace(/^.*/, "");
 const truckphoneText = truckphone?.replace(/^.*/, "");
 const locationText = location?.replace(/^.*/, "");
+const googleText = google?.replace(/^.*/, "");
 const dearbornlocationText = dearbornlocation?.replace(/^.*/, "");
 const heightslocationText = heightslocation?.replace(/^.*/, "");
 const eastlocationText = eastlocation?.replace(/^.*/, "");
@@ -76,6 +82,22 @@ const truckText = truck?.replace(/^.*/, "");
           )
         }
         {
+          facebook && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={facebook} target="_blank" rel="noopener noreferrer">
+              {facebookText}
+              <Icon name="tabler:brand-facebook" size="25px" title="facebook" />Facebook
+            </a>
+          )
+        }
+        {
+          youtube && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={youtube} target="_blank" rel="noopener noreferrer">
+              {youtubeText}
+              <Icon name="tabler:brand-youtube" size="25px" title="youtube" />YouTube
+            </a>
+          )
+        }
+        {
           phone && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={phone}>
               {phoneText}
@@ -87,7 +109,15 @@ const truckText = truck?.replace(/^.*/, "");
           location && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={location} target="_blank" rel="noopener noreferrer">
               {locationText}
-              <Icon name="tabler:location" size="25px" title="location" />Directions
+              <Icon name="tabler:navigation" size="25px" title="location" />Apple Maps
+            </a>
+          )
+        }
+        {
+          google && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={google} target="_blank" rel="noopener noreferrer">
+              {googleText}
+              <Icon name="tabler:brand-google-maps" size="25px" title="google" />Google Maps
             </a>
           )
         }
