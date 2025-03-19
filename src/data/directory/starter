@@ -7,8 +7,11 @@ tags:
 description: 
 link: 
 instagram: 
-phone: 
-location: 
+facebook: 
+youtube: 
+phone: tel:
+apple: 
+google: 
 
 dearbornphone: 
 dearbornlocation: 
@@ -28,8 +31,6 @@ storefrontlocation:
 truckphone: 
 trucklocation:
 ---
-
-
 
 ## Hours
 

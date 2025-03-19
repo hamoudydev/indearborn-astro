@@ -21,7 +21,7 @@ const directorySchema = (imageSchema: z.ZodTypeAny) =>
     heightsphone: z.string().url().optional(),
     eastphone: z.string().url().optional(),
     westphone: z.string().url().optional(),
-    location: z.string().url().optional(),
+    apple: z.string().url().optional(),
     dearbornlocation: z.string().url().optional(),
     heightslocation: z.string().url().optional(),
     eastlocation: z.string().url().optional(),

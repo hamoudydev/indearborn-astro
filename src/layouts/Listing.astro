@@ -18,7 +18,7 @@ const dearbornphone = frontmatter?.dearbornphone;
 const heightsphone = frontmatter?.heightsphone;
 const storefrontphone = frontmatter?.storefrontphone;
 const truckphone = frontmatter?.truckphone;
-const location = frontmatter?.location;
+const apple = frontmatter?.apple;
 const google = frontmatter?.google;
 const dearbornlocation = frontmatter?.dearbornlocation;
 const heightslocation = frontmatter?.heightslocation;
@@ -38,7 +38,7 @@ const eastphoneText = eastphone?.replace(/^.*/, "");
 const westphoneText = westphone?.replace(/^.*/, "");
 const storefrontphoneText = storefrontphone?.replace(/^.*/, "");
 const truckphoneText = truckphone?.replace(/^.*/, "");
-const locationText = location?.replace(/^.*/, "");
+const appleText = apple?.replace(/^.*/, "");
 const googleText = google?.replace(/^.*/, "");
 const dearbornlocationText = dearbornlocation?.replace(/^.*/, "");
 const heightslocationText = heightslocation?.replace(/^.*/, "");
@@ -106,10 +106,10 @@ const truckText = truck?.replace(/^.*/, "");
           )
         }
         {
-          location && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={location} target="_blank" rel="noopener noreferrer">
-              {locationText}
-              <Icon name="tabler:navigation" size="25px" title="location" />Apple Maps
+          apple && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={apple} target="_blank" rel="noopener noreferrer">
+              {appleText}
+              <Icon name="tabler:navigation" size="25px" title="apple maps" />Apple Maps
             </a>
           )
         }
@@ -117,7 +117,7 @@ const truckText = truck?.replace(/^.*/, "");
           google && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={google} target="_blank" rel="noopener noreferrer">
               {googleText}
-              <Icon name="tabler:brand-google-maps" size="25px" title="google" />Google Maps
+              <Icon name="tabler:map-pin" size="25px" title="google" />Google Maps
             </a>
           )
         }
