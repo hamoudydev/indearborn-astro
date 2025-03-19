@@ -50,7 +50,15 @@ const truckText = truck?.replace(/^.*/, "");
       </div>
       <p class="text-gray-600 mt-2.5 mb-2.5">{description}</p>
 
-      <p class="mt-5 mb-2.5 flex flex-wrap gap-4 place-content-center">
+      <div class="relative mt-5 mb-2.5">
+        <!-- Left Arrow -->
+        <div id="left-arrow" class="hidden absolute -left-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
+          <Icon name="tabler:arrow-left" color="white" size="15px" title="left" />
+        </div>
+      
+        <!-- Scrollable Content -->
+        <div id="scrollable-content" class="overflow-x-auto whitespace-nowrap hide-scrollbar">
+          <div class="inline-flex gap-4">
         {
           link && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={link} target="_blank" rel="noopener noreferrer">
@@ -179,11 +187,60 @@ const truckText = truck?.replace(/^.*/, "");
             </a>
           )
         }
-      </p>
+      </div></div>
+      <div id="right-arrow" class="absolute -right-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
+        <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />
+      </div>
     </div>
-
+    <p class="mt-10" />
     <AppProse>
       <slot />
     </AppProse>
   </div>
 </BaseLayout>
+
+<style>
+  .hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+</style>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+  const scrollableContent = document.getElementById('scrollable-content');
+  const leftArrow = document.getElementById('left-arrow');
+  const rightArrow = document.getElementById('right-arrow');
+
+  scrollableContent.addEventListener('scroll', function () {
+    if (scrollableContent.scrollLeft > 0) {
+      leftArrow.classList.remove('hidden');
+    } else {
+      leftArrow.classList.add('hidden');
+    }
+
+    if (scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth) {
+      rightArrow.classList.remove('hidden');
+    } else {
+      rightArrow.classList.add('hidden');
+    }
+  });
+
+  leftArrow.addEventListener('click', function () {
+    scrollableContent.scrollBy({
+      left: -200, // Adjust the scroll distance as needed
+      behavior: 'smooth'
+    });
+  });
+
+  rightArrow.addEventListener('click', function () {
+    scrollableContent.scrollBy({
+      left: 200, // Adjust the scroll distance as needed
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
