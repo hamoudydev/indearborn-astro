@@ -77,7 +77,7 @@ name = "Add a Business"
 href = "/add"
 
 [[header.navbar.links]]
-name = "Submit an Edit"
+name = "Edit a Business"
 href = "/edit"
 
 [[header.navbar.links]]

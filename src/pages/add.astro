@@ -6,99 +6,14 @@ import Layout from '../layouts/BaseLayout.astro';
 
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Submit your business to be added to inDearborn for free!</h2>
-      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-100 sm:text-xl">Businesses must be located in Dearborn or Dearborn Heights to be listed. Some exceptions will be made to businesses that operate from a different city but serve Dearborn and Dearborn Heights (electricians, rental companies, etc.).</p>
-      <form action="https://submit-form.com/pGC7iLyL8" method="post" class="space-y-8">
-        <!-- Hidden field for Formspark -->
-        <!-- <input type="hidden" name="_redirect" value="https://indearborn.com/success"/> -->
-        <input type="hidden" name="_formspark" value="pGC7iLyL8" />
-        <input type="hidden" name="_email.subject" value="A business is requesting to be added to inDearborn" />
-        <input type="hidden" name="_email.from" value="inDearborn Add" />
-        <div>
-              <label for="name" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Name</label>
-              <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" required>
-          </div>
-          <div>
-            <label for="phone" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Phone</label>
-            <input type="text" id="phone" name="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" required>
-        </div>
-        <div>
-            <label for="address" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Address</label>
-            <input type="text" id="address" name="address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
-        </div>
-        <div>
-            <label for="website" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Website</label>
-            <input type="text" id="website" name="website" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
-        </div>
-        <div>
-            <label for="instagram" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Business Instagram</label>
-            <input type="text" id="instagram" name="instagram" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
-        </div>
-          <div>
-              <label for="short" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Short Description</label><p class="text-xs text-gray-500 dark:text-gray-100">10-15 words that show up on the main page. Be specific, this helps users find your business when searching.</p>
-              <input type="text" id="short" name="short" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
-          </div>
-          <div>
-            <label for="categories" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Category</label><p class="text-xs text-gray-500 dark:text-gray-100">You may enter more than one category. This helps users find your business when searching.</p>
-            <input type="text" id="categories" name="categories" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light">
-        </div>
-          <div class="sm:col-span-2">
-              <label for="long" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-100">Long Description</label><p class="text-xs text-gray-500 dark:text-gray-100">This can be as long as you want. This will show up for your business page once the user clicks on your profile page. Be sure to include any information you'd want users to know about your business. If you have multiple locations and phone numbers, you can note that here.</p>
-              <textarea id="long" name="long" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
-          </div>
-          <p class="text-xs text-gray-500 dark:text-gray-100">PLEASE NOTE: All businesses subject to manual review before being added.</p>
-
-          <button type="submit" class="py-3 px-5 text-lg font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
-        </form>
-  </div>
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+        Submit your business to be added to inDearborn for free!</h2>
+      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-100 sm:text-xl">
+        Businesses must be located in Dearborn or Dearborn Heights to be listed. Some exceptions will be made to businesses that operate from a different city but serve Dearborn and Dearborn Heights (electricians, rental companies, etc.), as well as businesses located on city lines.</p>
+      <iframe data-tally-src="https://tally.so/embed/wvKxgl?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1107" frameborder="0" marginheight="0" marginwidth="0" title="inDearborn"></iframe>
+<script is:inline>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+<p class="mb-8 lg:mb-16 font-light text-gray-500 dark:text-gray-100 sm:text-md">
+  All submissions subject to review before being added. If your business meets the requirements it will be added within 24 hours.</p>  
+</div>
 </section>
 </Layout>
-<script is:inline>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("form");
-  const submitButton = form.querySelector("button[type='submit']");
-
-  form.addEventListener("submit", async function (event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    // Update the button text
-    submitButton.textContent = "Submitting...";
-    submitButton.disabled = true; // Disable the button to prevent multiple submissions
-
-    try {
-      // Submit the form data using Fetch API
-      const formData = new FormData(form);
-      console.log("Form Data:", Object.fromEntries(formData.entries())); // Log form data
-
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      console.log("Response Status:", response.status); // Log response status
-
-      if (response.ok) {
-        // If the submission is successful, update the button text
-        submitButton.textContent = "Submitted!";
-        // Optionally, redirect the user to the success page
-       // window.location.href = "https://indearborn.com/success";
-      } else {
-        // If there's an error, reset the button text
-        submitButton.textContent = "Submit";
-        submitButton.disabled = false;
-        alert("There was an error submitting the form. Please try again.");
-      }
-    } catch (error) {
-      // Handle any network errors
-      console.error("Submission Error:", error); // Log the error
-      submitButton.textContent = "Submit";
-      submitButton.disabled = false;
-      alert("There was an error submitting the form. Please try again.");
-    }
-  });
-});
-  </script>
-
