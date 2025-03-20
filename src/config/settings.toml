@@ -51,11 +51,16 @@ icon = "tabler:star"
 labelForCard = "Featured ✨"
 
 [directory.tagPages]
-title = "{0} Businesses"
+title = "{0}'s in Dearborn"
 
 [[directory.tags]]
 key = "restaurant"
-name = "Restaurant"
+name = "restaurant"
+color = "blue"
+
+[[directory.tags]]
+key = "mortgage broker"
+name = "mortgage broker"
 color = "blue"
 
 [header.banner]
