@@ -64,7 +64,7 @@ name = "mortgage broker"
 color = "blue"
 
 [header.banner]
-show = true
+show = false
 text = "Advertise with us"
 link = "/advertise"
 brandText = "inDearborn"
