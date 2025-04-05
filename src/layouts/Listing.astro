@@ -218,7 +218,7 @@ const truckText = truck?.replace(/^.*/, "");
           )
         }
       </div></div>
-      <div id="right-arrow" class="absolute -right-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
+      <div id="right-arrow" class="hidden absolute -right-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
         <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />
       </div>
     </div>
@@ -241,36 +241,36 @@ const truckText = truck?.replace(/^.*/, "");
 </style>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
-  const scrollableContent = document.getElementById('scrollable-content');
-  const leftArrow = document.getElementById('left-arrow');
-  const rightArrow = document.getElementById('right-arrow');
+    const scrollableContent = document.getElementById('scrollable-content');
+    const leftArrow = document.getElementById('left-arrow');
+    const rightArrow = document.getElementById('right-arrow');
 
-  scrollableContent.addEventListener('scroll', function () {
-    if (scrollableContent.scrollLeft > 0) {
-      leftArrow.classList.remove('hidden');
-    } else {
-      leftArrow.classList.add('hidden');
+    // Initial check to hide arrows if not needed
+    function checkScrollState() {
+      const canScrollLeft = scrollableContent.scrollLeft > 0;
+      const canScrollRight = scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth;
+      
+      leftArrow.classList.toggle('hidden', !canScrollLeft);
+      rightArrow.classList.toggle('hidden', !canScrollRight);
     }
 
-    if (scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth) {
-      rightArrow.classList.remove('hidden');
-    } else {
-      rightArrow.classList.add('hidden');
-    }
-  });
+    // Run the check initially
+    checkScrollState();
 
-  leftArrow.addEventListener('click', function () {
-    scrollableContent.scrollBy({
-      left: -200, // Adjust the scroll distance as needed
-      behavior: 'smooth'
+    scrollableContent.addEventListener('scroll', checkScrollState);
+
+    leftArrow.addEventListener('click', function () {
+      scrollableContent.scrollBy({
+        left: -200, // Adjust the scroll distance as needed
+        behavior: 'smooth'
+      });
+    });
+
+    rightArrow.addEventListener('click', function () {
+      scrollableContent.scrollBy({
+        left: 200, // Adjust the scroll distance as needed
+        behavior: 'smooth'
+      });
     });
   });
-
-  rightArrow.addEventListener('click', function () {
-    scrollableContent.scrollBy({
-      left: 200, // Adjust the scroll distance as needed
-      behavior: 'smooth'
-    });
-  });
-});
 </script>
