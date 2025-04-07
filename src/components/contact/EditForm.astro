@@ -1,0 +1,29 @@
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <script src="https://unpkg.com/@botpoison/browser" async></script>
+        <form action="https://submit-form.com/aG2KFx2lz" method="post" data-botpoison-public-key="pk_db5c9cb7-a16c-4c59-8807-b42137ab1e4b" class="space-y-8" onsubmit="submitForm(event)">
+            <!-- Hidden field for Formspark -->
+            <input type="hidden" name="_redirect" value="https://indearborn.com/success"/>
+            <input type="hidden" name="_formspark" value="aG2KFx2lz" />
+            <input type="hidden" name="_email.subject" value="inDearborn, you have an edit request" />
+            <input type="hidden" name="_email.from" value="inDearborn Edit" />
+            <div>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Name *</label>
+                <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " required>
+            </div>
+            <div>
+                <label for="relationship" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Relationship to Business *</label>
+                <input type="text" id="relationship" name="relationship" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" required>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Edits Needed *</label>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Please include as much details as possible. Edits can include: hours, phone number, categories, description, etc.</p>
+                <textarea id="message" name="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Leave a comment..."></textarea>
+            </div>
+            <button type="submit" onclick="return validateForm()" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Send message</button>
+        </form>
+    </div>
+  </section>
+  <script src="/src/components/contact/edit.js">
+
+  </script>
