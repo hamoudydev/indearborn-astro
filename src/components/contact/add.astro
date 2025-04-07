@@ -1,0 +1,47 @@
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <form action="https://submit-form.com/pGC7iLyL8" method="post" class="space-y-8" onsubmit="submitForm(event)">
+            <!-- Hidden field for Formspark -->
+            <input type="hidden" name="_redirect" value="https://indearborn.com/thanks"/>
+            <input type="hidden" name="_formspark" value="pGC7iLyL8" />
+            <input type="hidden" name="_email.subject" value="inDearborn, you have a new submission!" />
+            <input type="hidden" name="_email.from" value="Website Submission" />
+            <div>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Name</label>
+                <input type="text" id="name" name="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " required>
+            </div>
+            <div>
+                <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Phone Number</label>
+                <input type="tel" id="number" name="number" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" required>
+            </div>
+            <div>
+                <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Address</label>
+                <input type="text" id="address" name="address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " required>
+            </div>
+            <div>
+                <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Website</label>
+                <input type="text" id="website" name="website" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" required>
+            </div>
+            <div>
+                <label for="instagram" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Instagram</label>
+                <input type="text" id="instagram" name="instagram" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " required>
+            </div>
+            <div>
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Short Description</label>
+                <input type="text" id="description" name="description" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" required>
+            </div>
+            <div>
+                <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Business Category</label>
+                <input type="text" id="category" name="category" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " required>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Additional Info</label>
+                <textarea id="message" name="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Leave a comment..."></textarea>
+            </div>
+            <button type="submit" onclick="return validateForm()" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Send message</button>
+        </form>
+    </div>
+  </section>
+  <script src="/src/components/contact/contact.js">
+
+  </script>
