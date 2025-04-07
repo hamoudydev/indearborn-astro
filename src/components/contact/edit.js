@@ -49,7 +49,7 @@ const submitForm = (event) => {
   const jsonString = JSON.stringify(formObject);
 
   // submit to formspark
-  fetch("https://submit-form.com/aG2KFx2lz", {
+  fetch("https://submit-form.com/Qmu8r8J1e", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
