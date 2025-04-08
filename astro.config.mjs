@@ -6,10 +6,12 @@ import icon from 'astro-icon';
 import sitemap from '@astrojs/sitemap';
 import { ViteToml } from 'vite-plugin-toml';
 import tailwindcss from '@tailwindcss/vite';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://indearborn.com",
+  output: 'server',
   integrations: [
     vue(),
     mdx(),
@@ -18,5 +20,7 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss(), ViteToml()]
-  }
+  },
+  adapter: cloudflare({
+  })
 });
