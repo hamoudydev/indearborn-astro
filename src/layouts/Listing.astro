@@ -118,16 +118,30 @@ const googleMapsUrl = google ? google : '';
         }
         {
           hasMapLinks && (
-            <a id="dynamic-map-link"
-               class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
-               href={googleMapsUrl}
-               target="_blank"
-               rel="noopener noreferrer"
-               data-apple-url={appleMapsUrl}
-               data-google-url={googleMapsUrl}>
-              View on Map
-              <Icon name="tabler:map-pin" size="25px" title="map" />
-            </a>
+            <div id="map-link-container" class="inline-flex">
+              <!-- Only render one link initially based on the server-side detection -->
+              {
+                Astro.request.headers.get('user-agent')?.includes('Macintosh') && appleMapsUrl ? (
+                  <a id="apple-map-link"
+                     class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+                     href={appleMapsUrl}
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    <Icon name="tabler:navigation" size="25px" title="Apple Maps" />
+                    Get Directions
+                  </a>
+                ) : googleMapsUrl ? (
+                  <a id="google-map-link"
+                     class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+                     href={googleMapsUrl}
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    <Icon name="tabler:navigation" size="25px" title="Google Maps" />
+                    Get Directions
+                  </a>
+                ) : null
+              }
+            </div>
           )
         }
         {
@@ -248,49 +262,86 @@ const googleMapsUrl = google ? google : '';
   display: none; /* Chrome, Safari, and Opera */
 }
 </style>
+
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
-    // ... (keep your existing scroll functionality)
+    const scrollableContent = document.getElementById('scrollable-content');
+    const leftArrow = document.getElementById('left-arrow');
+    const rightArrow = document.getElementById('right-arrow');
 
-    // Enhanced Map Link Handling
-    const dynamicMapLink = document.getElementById('dynamic-map-link');
-    if (dynamicMapLink) {
-      // Improved iOS detection
-      const isIOS = () => {
+    // Initial check to hide arrows if not needed
+    function checkScrollState() {
+      const canScrollLeft = scrollableContent.scrollLeft > 0;
+      const canScrollRight = scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth;
+      
+      leftArrow.classList.toggle('hidden', !canScrollLeft);
+      rightArrow.classList.toggle('hidden', !canScrollRight);
+    }
+
+    // Run the check initially
+    checkScrollState();
+
+    scrollableContent.addEventListener('scroll', checkScrollState);
+
+    leftArrow.addEventListener('click', function () {
+      scrollableContent.scrollBy({
+        left: -200, // Adjust the scroll distance as needed
+        behavior: 'smooth'
+      });
+    });
+
+    rightArrow.addEventListener('click', function () {
+      scrollableContent.scrollBy({
+        left: 200, // Adjust the scroll distance as needed
+        behavior: 'smooth'
+      });
+    });
+  });
+
+    // Client-side correction for map link
+    const mapLinkContainer = document.getElementById('map-link-container');
+    if (mapLinkContainer) {
+      const isAppleDevice = () => {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       };
 
-      // Get URLs from data attributes
-      const appleUrl = dynamicMapLink.getAttribute('data-apple-url');
-      const googleUrl = dynamicMapLink.getAttribute('data-google-url');
-
-      // Update link based on device and available URLs
-      if (isIOS() && appleUrl) {
-        dynamicMapLink.innerHTML = `
-          <span>View on Apple Maps</span>
-          <icon name="tabler:navigation" size="25px" title="apple maps" />
-        `;
+      const appleUrl = `{appleMapsUrl}`;
+      const googleUrl = `{googleMapsUrl}`;
+      
+      // Only modify if we need to switch from server-side guess
+      if ((isAppleDevice() && appleUrl && !mapLinkContainer.querySelector('#apple-map-link')) ||
+          (!isAppleDevice() && googleUrl && !mapLinkContainer.querySelector('#google-map-link'))) {
         
-        // Replace click handler for iOS
-        dynamicMapLink.addEventListener('click', function(e) {
-          if (isIOS() && appleUrl) {
+        mapLinkContainer.innerHTML = isAppleDevice() && appleUrl ? `
+          <a id="apple-map-link"
+             class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+             href="${appleUrl}"
+             target="_blank"
+             rel="noopener noreferrer">
+            <icon name="tabler:navigation" size="25px" title="Apple Maps" />
+            Get Directions
+          </a>
+        ` : googleUrl ? `
+          <a id="google-map-link"
+             class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+             href="${googleUrl}"
+             target="_blank"
+             rel="noopener noreferrer">
+            <icon name="tabler:navigation" size="25px" title="Google Maps" />
+            Get Directions
+          </a>
+        ` : '';
+        
+        // Add Apple Maps special handling if needed
+        if (isAppleDevice() && appleUrl) {
+          document.getElementById('apple-map-link')?.addEventListener('click', function(e) {
             e.preventDefault();
-            // Special handling for Apple Maps
-            if (appleUrl.startsWith('http')) {
-              // Use universal link that should open in Maps app
-              window.location.href = appleUrl.replace('https://', 'maps://');
-            } else {
-              window.location.href = appleUrl;
-            }
-          }
-        });
-      } else if (googleUrl) {
-        dynamicMapLink.innerHTML = `
-          <span>View on Google Maps</span>
-          <icon name="tabler:map-pin" size="25px" title="google maps" />
-        `;
+            window.location.href = appleUrl.includes('maps.apple.com') 
+              ? appleUrl.replace('https://', 'maps://')
+              : appleUrl;
+          });
+        }
       }
     }
-  });
 </script>
