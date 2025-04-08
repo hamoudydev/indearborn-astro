@@ -278,9 +278,13 @@ const googleMapsUrl = google ? encodeURI(google) : '';
                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       };
 
-      if (isIOS() && `{appleMapsUrl}`) {
+      // Get the actual URLs from the element's data attributes
+      const appleUrl = `{appleMapsUrl}`;
+      const googleUrl = `{googleMapsUrl}`;
+
+      if (isIOS() && appleUrl) {
         // Update link for iOS
-        dynamicMapLink.href = `{appleMapsUrl}`;
+        dynamicMapLink.href = appleUrl;
         dynamicMapLink.innerHTML = `
           <span>View on Apple Maps</span>
           <icon name="tabler:navigation" size="25px" title="apple maps" />
@@ -288,11 +292,18 @@ const googleMapsUrl = google ? encodeURI(google) : '';
         
         // Ensure it opens in Maps app
         dynamicMapLink.addEventListener('click', function(e) {
-          if (isIOS()) {
+          if (isIOS() && appleUrl) {
             e.preventDefault();
-            window.location.href = `{appleMapsUrl}`;
+            window.location.href = appleUrl;
           }
         });
+      } else if (googleUrl) {
+        // Ensure Google Maps works normally for non-iOS or when no Apple Maps link exists
+        dynamicMapLink.href = googleUrl;
+        dynamicMapLink.innerHTML = `
+          <span>View on Google Maps</span>
+          <icon name="tabler:map-pin" size="25px" title="google maps" />
+        `;
       }
     }
   });
