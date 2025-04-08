@@ -54,6 +54,8 @@ const eastlocationText = eastlocation?.replace(/^.*/, "");
 const westlocationText = westlocation?.replace(/^.*/, "");
 const storefrontText = storefront?.replace(/^.*/, "");
 const truckText = truck?.replace(/^.*/, "");
+// Add this line to get both map links
+const hasMapLinks = apple || google;
 ---
 
 <BaseLayout>
@@ -114,18 +116,11 @@ const truckText = truck?.replace(/^.*/, "");
           )
         }
         {
-          apple && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={apple} target="_blank" rel="noopener noreferrer">
-              {appleText}
-              <Icon name="tabler:navigation" size="25px" title="apple maps" />Apple Maps
-            </a>
-          )
-        }
-        {
-          google && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={google} target="_blank" rel="noopener noreferrer">
-              {googleText}
-              <Icon name="tabler:map-pin" size="25px" title="google" />Google Maps
+          // Replace both apple and google links with this single dynamic link
+          hasMapLinks && (
+            <a id="dynamic-map-link" class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={google} target="_blank" rel="noopener noreferrer">
+              View on Map
+              <Icon name="tabler:map-pin" size="25px" title="map" />
             </a>
           )
         }
@@ -280,5 +275,18 @@ const truckText = truck?.replace(/^.*/, "");
         behavior: 'smooth'
       });
     });
+
+    // Add device detection for map links
+    const dynamicMapLink = document.getElementById('dynamic-map-link');
+    if (dynamicMapLink) {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
+      // Only change if we have an Apple Maps link available
+      if (isIOS && `{apple}`) {
+        dynamicMapLink.href = `{apple}`;
+        dynamicMapLink.innerHTML = `View on Apple Maps <icon name="tabler:navigation" size="25px" title="apple maps" />`;
+      }
+    }
   });
 </script>
