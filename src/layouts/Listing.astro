@@ -54,8 +54,9 @@ const eastlocationText = eastlocation?.replace(/^.*/, "");
 const westlocationText = westlocation?.replace(/^.*/, "");
 const storefrontText = storefront?.replace(/^.*/, "");
 const truckText = truck?.replace(/^.*/, "");
-// Add this line to get both map links
 const hasMapLinks = apple || google;
+const appleMapsUrl = apple ? encodeURI(apple) : '';
+const googleMapsUrl = google ? encodeURI(google) : '';
 ---
 
 <BaseLayout>
@@ -116,14 +117,14 @@ const hasMapLinks = apple || google;
           )
         }
         {
-          // Replace both apple and google links with this single dynamic link
           hasMapLinks && (
-            <a id="dynamic-map-link" class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={google} target="_blank" rel="noopener noreferrer">
+            <a id="dynamic-map-link" class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
               View on Map
               <Icon name="tabler:map-pin" size="25px" title="map" />
             </a>
           )
         }
+
         {
           dearbornphone && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornphone}>
@@ -243,12 +244,12 @@ const hasMapLinks = apple || google;
 }
 </style>
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Scroll functionality
     const scrollableContent = document.getElementById('scrollable-content');
     const leftArrow = document.getElementById('left-arrow');
     const rightArrow = document.getElementById('right-arrow');
 
-    // Initial check to hide arrows if not needed
     function checkScrollState() {
       const canScrollLeft = scrollableContent.scrollLeft > 0;
       const canScrollRight = scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth;
@@ -257,35 +258,41 @@ const hasMapLinks = apple || google;
       rightArrow.classList.toggle('hidden', !canScrollRight);
     }
 
-    // Run the check initially
     checkScrollState();
-
     scrollableContent.addEventListener('scroll', checkScrollState);
 
-    leftArrow.addEventListener('click', function () {
-      scrollableContent.scrollBy({
-        left: -200, // Adjust the scroll distance as needed
-        behavior: 'smooth'
-      });
+    leftArrow.addEventListener('click', function() {
+      scrollableContent.scrollBy({ left: -200, behavior: 'smooth' });
     });
 
-    rightArrow.addEventListener('click', function () {
-      scrollableContent.scrollBy({
-        left: 200, // Adjust the scroll distance as needed
-        behavior: 'smooth'
-      });
+    rightArrow.addEventListener('click', function() {
+      scrollableContent.scrollBy({ left: 200, behavior: 'smooth' });
     });
 
-    // Add device detection for map links
+    // Dynamic Map Link functionality
     const dynamicMapLink = document.getElementById('dynamic-map-link');
     if (dynamicMapLink) {
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      
-      // Only change if we have an Apple Maps link available
-      if (isIOS && `{apple}`) {
-        dynamicMapLink.href = `{apple}`;
-        dynamicMapLink.innerHTML = `View on Apple Maps <icon name="tabler:navigation" size="25px" title="apple maps" />`;
+      // Enhanced iOS detection
+      const isIOS = () => {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      };
+
+      if (isIOS() && `{appleMapsUrl}`) {
+        // Update link for iOS
+        dynamicMapLink.href = `{appleMapsUrl}`;
+        dynamicMapLink.innerHTML = `
+          <span>View on Apple Maps</span>
+          <icon name="tabler:navigation" size="25px" title="apple maps" />
+        `;
+        
+        // Ensure it opens in Maps app
+        dynamicMapLink.addEventListener('click', function(e) {
+          if (isIOS()) {
+            e.preventDefault();
+            window.location.href = `{appleMapsUrl}`;
+          }
+        });
       }
     }
   });
