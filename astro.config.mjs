@@ -8,6 +8,7 @@ import { ViteToml } from 'vite-plugin-toml';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 
+
 export default defineConfig({
   site: "https://indearborn.com",
   output: 'server',
@@ -20,15 +21,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), ViteToml()],
     build: {
-      target: 'es2022' // Cloudflare recommends modern ES
+      target: 'es2022' // Required for Cloudflare
     }
   },
-  adapter: cloudflare({
-    mode: 'directory',
-    runtime: {
-      bindings: {
-        // Add any KV/DO bindings here if needed later
-      }
-    }
-  })
+  adapter: cloudflare() // No options needed for basic setup
 });
