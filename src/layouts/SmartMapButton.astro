@@ -8,13 +8,13 @@ const mapId = `map-${Math.random().toString(36).substring(2, 9)}`;
 <a 
   id={mapId}
   class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded map-link" 
-  href={locationUrl} 
+  href={locationUrl}
   target="_blank" 
   rel="noopener noreferrer"
   data-location={locationUrl}
   {...props}
 >
-  <Icon name="tabler:navigation" size="25px" title="map" class="map-icon" />
+  <Icon name="tabler:map-pin" size="25px" title="map" class="map-icon" />
   {locationName}
 </a>
 
@@ -27,9 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const locationUrl = link.dataset.location;
     
-    if (isIOS && locationUrl.includes('location.com/maps')) {
-      // Convert location Maps URL to Apple Maps on iOS
-      link.href = locationUrl.replace('https://www.location.com/maps', 'https://maps.apple.com');
+    if (!locationUrl) return; // Skip if no URL
+    
+    // Handle both short (maps.app.goo.gl) and long (google.com/maps) URLs
+    if (isIOS) {
+      if (locationUrl.includes('maps.app.goo.gl')) {
+        // Convert short Google URL to Apple Maps
+        link.href = `https://maps.apple.com/?q=${encodeURIComponent(locationUrl)}`;
+      } else if (locationUrl.includes('google.com/maps')) {
+        // Convert long Google URL to Apple Maps
+        link.href = locationUrl
+          .replace('https://www.google.com/maps', 'https://maps.apple.com')
+          .replace('?q=', '?ll=');
+      }
       link.querySelector('.map-icon').setAttribute('name', 'tabler:navigation');
     }
   });
