@@ -1,64 +1,47 @@
 ---
 import { Icon } from "astro-icon/components";
-
-const { locationUrl, locationName, ...props } = Astro.props;
-const mapId = `map-${Math.random().toString(36).substring(2, 9)}`;
+const { shortUrl, locationName, ...props } = Astro.props;
 ---
 
 <a 
-  id={mapId}
-  class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded map-link" 
-  href={locationUrl}
-  target="_blank" 
+  class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded hover:bg-gray-50 transition-colors map-link"
+  href={shortUrl}
+  target="_blank"
   rel="noopener noreferrer"
-  data-location={locationUrl}
+  data-map-short-url={shortUrl}
   {...props}
 >
-  <Icon name="tabler:navigation" size="25px" title="map" class="map-icon" />
+  <Icon name="tabler:map-pin" size="25px" title="map" class="map-icon" />
   {locationName}
 </a>
 
 <script is:inline>
 document.addEventListener('DOMContentLoaded', async () => {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const links = document.querySelectorAll('[data-map-short-url]');
   
-  if (!isIOS) return;
+  // Skip if no links or unsupported browser
+  if (links.length === 0 || typeof fetch === 'undefined') return;
 
-  document.querySelectorAll('.map-link').forEach(async link => {
-    const locationUrl = link.dataset.location;
-    if (!locationUrl) return;
-
+  for (const link of links) {
     try {
-      // For short URLs
-      if (locationUrl.includes('maps.app.goo.gl')) {
-        // Try to resolve through our API
-        const response = await fetch(`/api/resolve-map-url?url=${encodeURIComponent(locationUrl)}`);
-        if (response.ok) {
-          const { resolvedUrl } = await response.json();
-          if (resolvedUrl.includes('google.com/maps')) {
-            const coordMatch = resolvedUrl.match(/@([-\d.]+),([-\d.]+)/);
-            if (coordMatch) {
-              const [_, lat, lng] = coordMatch;
-              link.href = `https://maps.apple.com/?ll=${lat},${lng}`;
-              link.querySelector('.map-icon').setAttribute('name', 'tabler:navigation');
-              return;
-            }
-          }
-        }
-      } 
-      // For regular Google Maps URLs
-      else if (locationUrl.includes('google.com/maps')) {
-        const coordMatch = locationUrl.match(/@([-\d.]+),([-\d.]+)/);
-        if (coordMatch) {
-          const [_, lat, lng] = coordMatch;
-          link.href = `https://maps.apple.com/?ll=${lat},${lng}`;
-          link.querySelector('.map-icon').setAttribute('name', 'tabler:navigation');
-        }
-      }
+      const shortUrl = link.dataset.mapShortUrl;
+      if (!shortUrl) continue;
+
+      const response = await fetch(`/api/resolve-map-url?url=${encodeURIComponent(shortUrl)}`);
+      
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      
+      const { url } = await response.json();
+      if (!url) continue;
+
+      // Update link and icon
+      link.href = url;
+      link.querySelector('.map-icon')?.setAttribute('name', 
+        url.includes('maps.apple.com') ? 'tabler:navigation' : 'tabler:map-pin'
+      );
     } catch (error) {
-      console.log('Map link conversion failed, using original URL');
+      console.debug('Map resolution failed; using original URL:', error);
     }
-  });
+  }
 });
 </script>

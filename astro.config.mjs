@@ -8,7 +8,6 @@ import { ViteToml } from 'vite-plugin-toml';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://indearborn.com",
   output: 'server',
@@ -19,8 +18,17 @@ export default defineConfig({
     sitemap()
   ],
   vite: {
-    plugins: [tailwindcss(), ViteToml()]
+    plugins: [tailwindcss(), ViteToml()],
+    build: {
+      target: 'es2022' // Cloudflare recommends modern ES
+    }
   },
   adapter: cloudflare({
+    mode: 'directory',
+    runtime: {
+      bindings: {
+        // Add any KV/DO bindings here if needed later
+      }
+    }
   })
 });
