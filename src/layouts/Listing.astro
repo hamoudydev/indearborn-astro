@@ -55,8 +55,8 @@ const westlocationText = westlocation?.replace(/^.*/, "");
 const storefrontText = storefront?.replace(/^.*/, "");
 const truckText = truck?.replace(/^.*/, "");
 const hasMapLinks = apple || google;
-const appleMapsUrl = apple ? encodeURI(apple) : '';
-const googleMapsUrl = google ? encodeURI(google) : '';
+const appleMapsUrl = apple ? apple : '';
+const googleMapsUrl = google ? google : '';
 ---
 
 <BaseLayout>
@@ -118,13 +118,18 @@ const googleMapsUrl = google ? encodeURI(google) : '';
         }
         {
           hasMapLinks && (
-            <a id="dynamic-map-link" class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
+            <a id="dynamic-map-link"
+               class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+               href={googleMapsUrl}
+               target="_blank"
+               rel="noopener noreferrer"
+               data-apple-url={appleMapsUrl}
+               data-google-url={googleMapsUrl}>
               View on Map
               <Icon name="tabler:map-pin" size="25px" title="map" />
             </a>
           )
         }
-
         {
           dearbornphone && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornphone}>
@@ -245,61 +250,42 @@ const googleMapsUrl = google ? encodeURI(google) : '';
 </style>
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
-    // Scroll functionality
-    const scrollableContent = document.getElementById('scrollable-content');
-    const leftArrow = document.getElementById('left-arrow');
-    const rightArrow = document.getElementById('right-arrow');
+    // ... (keep your existing scroll functionality)
 
-    function checkScrollState() {
-      const canScrollLeft = scrollableContent.scrollLeft > 0;
-      const canScrollRight = scrollableContent.scrollLeft + scrollableContent.clientWidth < scrollableContent.scrollWidth;
-      
-      leftArrow.classList.toggle('hidden', !canScrollLeft);
-      rightArrow.classList.toggle('hidden', !canScrollRight);
-    }
-
-    checkScrollState();
-    scrollableContent.addEventListener('scroll', checkScrollState);
-
-    leftArrow.addEventListener('click', function() {
-      scrollableContent.scrollBy({ left: -200, behavior: 'smooth' });
-    });
-
-    rightArrow.addEventListener('click', function() {
-      scrollableContent.scrollBy({ left: 200, behavior: 'smooth' });
-    });
-
-    // Dynamic Map Link functionality
+    // Enhanced Map Link Handling
     const dynamicMapLink = document.getElementById('dynamic-map-link');
     if (dynamicMapLink) {
-      // Enhanced iOS detection
+      // Improved iOS detection
       const isIOS = () => {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       };
 
-      // Get the actual URLs from the element's data attributes
-      const appleUrl = `{appleMapsUrl}`;
-      const googleUrl = `{googleMapsUrl}`;
+      // Get URLs from data attributes
+      const appleUrl = dynamicMapLink.getAttribute('data-apple-url');
+      const googleUrl = dynamicMapLink.getAttribute('data-google-url');
 
+      // Update link based on device and available URLs
       if (isIOS() && appleUrl) {
-        // Update link for iOS
-        dynamicMapLink.href = appleUrl;
         dynamicMapLink.innerHTML = `
           <span>View on Apple Maps</span>
           <icon name="tabler:navigation" size="25px" title="apple maps" />
         `;
         
-        // Ensure it opens in Maps app
+        // Replace click handler for iOS
         dynamicMapLink.addEventListener('click', function(e) {
           if (isIOS() && appleUrl) {
             e.preventDefault();
-            window.location.href = appleUrl;
+            // Special handling for Apple Maps
+            if (appleUrl.startsWith('http')) {
+              // Use universal link that should open in Maps app
+              window.location.href = appleUrl.replace('https://', 'maps://');
+            } else {
+              window.location.href = appleUrl;
+            }
           }
         });
       } else if (googleUrl) {
-        // Ensure Google Maps works normally for non-iOS or when no Apple Maps link exists
-        dynamicMapLink.href = googleUrl;
         dynamicMapLink.innerHTML = `
           <span>View on Google Maps</span>
           <icon name="tabler:map-pin" size="25px" title="google maps" />
