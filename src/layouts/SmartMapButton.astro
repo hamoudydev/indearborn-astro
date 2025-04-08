@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { locationUrl, locationName, ...props } = Astro.props;
+const mapId = `map-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<a 
+  id={mapId}
+  class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded map-link" 
+  href={locationUrl} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  data-location={locationUrl}
+  {...props}
+>
+  <Icon name="tabler:navigation" size="25px" title="map" class="map-icon" />
+  {locationName}
+</a>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.map-link').forEach(link => {
+    // Check if iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    
+    const locationUrl = link.dataset.location;
+    
+    if (isIOS && locationUrl.includes('location.com/maps')) {
+      // Convert location Maps URL to Apple Maps on iOS
+      link.href = locationUrl.replace('https://www.location.com/maps', 'https://maps.apple.com');
+      link.querySelector('.map-icon').setAttribute('name', 'tabler:navigation');
+    }
+  });
+});
+</script>
