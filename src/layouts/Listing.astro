@@ -5,6 +5,7 @@ import AppProse from "../components/app/Prose.astro";
 const { frontmatter } = Astro.props;
 import themeConfig from "@util/themeConfig";
 import { Icon } from "astro-icon/components";
+import SmartMapButton from "../layouts/SmartMapButton.astro";
 const siteTitle = themeConfig.general.title;
 const title = frontmatter?.title || siteTitle;
 const link = frontmatter?.link;
@@ -20,8 +21,7 @@ const schaeferphone = frontmatter?.schaeferphone;
 const heightsphone = frontmatter?.heightsphone;
 const storefrontphone = frontmatter?.storefrontphone;
 const truckphone = frontmatter?.truckphone;
-const apple = frontmatter?.apple;
-const google = frontmatter?.google;
+const location= frontmatter?.location;
 const dearbornlocation = frontmatter?.dearbornlocation;
 const warrenlocation = frontmatter?.warrenlocation;
 const schaeferlocation = frontmatter?.schaeferlocation;
@@ -44,8 +44,7 @@ const eastphoneText = eastphone?.replace(/^.*/, "");
 const westphoneText = westphone?.replace(/^.*/, "");
 const storefrontphoneText = storefrontphone?.replace(/^.*/, "");
 const truckphoneText = truckphone?.replace(/^.*/, "");
-const appleText = apple?.replace(/^.*/, "");
-const googleText = google?.replace(/^.*/, "");
+const locationText = location?.replace(/^.*/, "");
 const dearbornlocationText = dearbornlocation?.replace(/^.*/, "");
 const warrenlocationText = dearbornlocation?.replace(/^.*/, "");
 const schaeferlocationText = schaeferlocation?.replace(/^.*/, "");
@@ -109,6 +108,14 @@ const googleMapsUrl = google ? google : '';
           )
         }
         {
+          location && (
+            <SmartMapButton 
+              locationUrl={location} 
+              locationName="Get Directions" 
+            />
+          )
+        }
+        {
           phone && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={phone}>
               {phoneText}
@@ -116,7 +123,7 @@ const googleMapsUrl = google ? google : '';
             </a>
           )
         }
-        {
+       {
           hasMapLinks && (
             <div id="map-link-container" class="inline-flex">
               <!-- Only render one link initially based on the server-side detection -->
@@ -156,7 +163,39 @@ const googleMapsUrl = google ? google : '';
           dearbornlocation && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornlocation} target="_blank" rel="noopener noreferrer">
               {dearbornlocationText}
-              <Icon name="tabler:location" size="25px" title="location" />Dearborn
+              <Icon name="tabler:navigation" size="25px" title="location" />Dearborn
+            </a>
+          )
+        }
+        {
+          warrenphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={warrenphone}>
+              {warrenphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />Warren
+            </a>
+          )
+        }
+        {
+          warrenlocation && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={warrenlocation} target="_blank" rel="noopener noreferrer">
+              {warrenlocationText}
+              <Icon name="tabler:navigation" size="25px" title="location" />Warren
+            </a>
+          )
+        }
+        {
+          schaeferphone && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={schaeferphone}>
+              {schaeferphoneText}
+              <Icon name="tabler:phone" size="25px" title="phone" />Schaefer
+            </a>
+          )
+        }
+        {
+          schaeferlocation && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={schaeferlocation} target="_blank" rel="noopener noreferrer">
+              {schaeferlocationText}
+              <Icon name="tabler:navigation" size="25px" title="location" />Schaefer
             </a>
           )
         }
@@ -172,7 +211,7 @@ const googleMapsUrl = google ? google : '';
           eastlocation && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={eastlocation} target="_blank" rel="noopener noreferrer">
               {eastlocationText}
-              <Icon name="tabler:location" size="25px" title="location" />East Dearborn
+              <Icon name="tabler:navigation" size="25px" title="location" />East Dearborn
             </a>
           )
         }
@@ -188,7 +227,7 @@ const googleMapsUrl = google ? google : '';
           westlocation && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={westlocation} target="_blank" rel="noopener noreferrer">
               {westlocationText}
-              <Icon name="tabler:location" size="25px" title="location" />West Dearborn
+              <Icon name="tabler:navigation" size="25px" title="location" />West Dearborn
             </a>
           )
         }
@@ -204,7 +243,7 @@ const googleMapsUrl = google ? google : '';
           heightslocation && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={heightslocation} target="_blank" rel="noopener noreferrer">
               {heightslocationText}
-              <Icon name="tabler:location" size="25px" title="location" />Dearborn Heights
+              <Icon name="tabler:navigation" size="25px" title="location" />Dearborn Heights
             </a>
           )
         }
@@ -220,7 +259,7 @@ const googleMapsUrl = google ? google : '';
           storefront && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={storefront} target="_blank" rel="noopener noreferrer">
               {storefrontText}
-              <Icon name="tabler:location" size="25px" title="location" />Storefront
+              <Icon name="tabler:navigation" size="25px" title="location" />Storefront
             </a>
           )
         }
@@ -236,7 +275,7 @@ const googleMapsUrl = google ? google : '';
           truck && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={truck} target="_blank" rel="noopener noreferrer">
               {truckText}
-              <Icon name="tabler:location" size="25px" title="location" />Truck
+              <Icon name="tabler:navigation" size="25px" title="location" />Truck
             </a>
           )
         }

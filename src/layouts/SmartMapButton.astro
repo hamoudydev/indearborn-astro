@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+const { shortUrl, locationName, ...props } = Astro.props;
+---
+
+<a 
+  class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded hover:bg-gray-50 transition-colors map-link"
+  href={shortUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-map-short-url={shortUrl}
+  {...props}
+>
+  <Icon name="tabler:map-pin" size="25px" title="map" class="map-icon" />
+  {locationName}
+</a>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', async () => {
+  const links = document.querySelectorAll('[data-map-short-url]');
+  
+  // Skip if no links or unsupported browser
+  if (links.length === 0 || typeof fetch === 'undefined') return;
+
+  for (const link of links) {
+    try {
+      const shortUrl = link.dataset.mapShortUrl;
+      if (!shortUrl) continue;
+
+      const response = await fetch(`/api/resolve-map-url?url=${encodeURIComponent(shortUrl)}`);
+      
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      
+      const { url } = await response.json();
+      if (!url) continue;
+
+      // Update link and icon
+      link.href = url;
+      link.querySelector('.map-icon')?.setAttribute('name', 
+        url.includes('maps.apple.com') ? 'tabler:navigation' : 'tabler:map-pin'
+      );
+    } catch (error) {
+      console.debug('Map resolution failed; using original URL:', error);
+    }
+  }
+});
+</script>
