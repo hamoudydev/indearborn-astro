@@ -41,9 +41,15 @@ importers:
       '@iarna/toml':
         specifier: ^2.2.5
         version: 2.2.5
+      '@iconify-json/arcticons':
+        specifier: ^1.2.22
+        version: 1.2.22
       '@iconify-json/lineicons':
         specifier: ^1.2.4
         version: 1.2.4
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.31
+        version: 1.2.31
       '@iconify-json/skill-icons':
         specifier: ^1.2.0
         version: 1.2.0
@@ -860,8 +866,14 @@ packages:
   '@iarna/toml@2.2.5':
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
 
+  '@iconify-json/arcticons@1.2.22':
+    resolution: {integrity: sha512-JAKb0d1UWhRlYp3+S/fRA0+m/AwcKtWYVYAvEkFnNgpoD9D12k7GPbNcYwal1QC5oK11hdWFzyPEY4x5zbcWWw==}
+
   '@iconify-json/lineicons@1.2.4':
     resolution: {integrity: sha512-OKvUL14Z7CgD027OWtse56GK0T8MDDMnFw75MjOlGAgleLJBR9Uue7nSEteF5K/fLjvSKtIhjnRLsN8BC3TpLg==}
+
+  '@iconify-json/simple-icons@1.2.31':
+    resolution: {integrity: sha512-xBUPtvkcSAiXs9DfVtudhLddQtQYin3I3Ph/W5FNYA0oE6r2hmLB8TgOog9OjOt1Sxn3IB5+4n5+64DMf2xNmQ==}
 
   '@iconify-json/skill-icons@1.2.0':
     resolution: {integrity: sha512-5zlPrzF5pelV1wut7C88zmAiYONvGxvFw11dXW1Pr1oIhUOtYhC7x3zkErSTFkyZ3m5fEgcEUrcO1W3UhNJVpw==}
@@ -4645,7 +4657,15 @@ snapshots:
 
   '@iarna/toml@2.2.5': {}
 
+  '@iconify-json/arcticons@1.2.22':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/lineicons@1.2.4':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.31':
     dependencies:
       '@iconify/types': 2.0.0
 

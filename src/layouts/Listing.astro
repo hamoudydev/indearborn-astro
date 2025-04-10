@@ -8,19 +8,29 @@ import themeConfig from "@util/themeConfig";
 import { Icon } from "astro-icon/components";
 const siteTitle = themeConfig.general.title;
 const title = frontmatter?.title || siteTitle;
+const phone = frontmatter?.phone;
+const textorder = frontmatter?.textorder;
+const orderonline = frontmatter?.orderonline;
+const doordash = frontmatter?.doordash;
+const ubereats = frontmatter?.ubereats;
+const apple= frontmatter?.apple;
+const google= frontmatter?.google;
 const link = frontmatter?.link;
 const instagram = frontmatter?.instagram;
 const facebook = frontmatter?.facebook;
 const youtube = frontmatter?.youtube;
-const phone = frontmatter?.phone;
-const apple= frontmatter?.apple;
-const google= frontmatter?.google;
+const tiktok = frontmatter?.tiktok;
 const description = frontmatter?.description;
+const phoneText = phone?.replace(/^.*/, "");
+const textorderText = textorder?.replace(/^.*/, "");
+const orderonlineText = orderonline?.replace(/^.*/, "");
+const doordashText = doordash?.replace(/^.*/, "");
+const ubereatsText = ubereats?.replace(/^.*/, "");
 const linkText = link?.replace(/^.*/, "");
 const instagramText = instagram?.replace(/^.*/, "");
 const facebookText = facebook?.replace(/^.*/, "");
 const youtubeText = youtube?.replace(/^.*/, "");
-const phoneText = phone?.replace(/^.*/, "");
+const tiktokText = tiktok?.replace(/^.*/, "");
 const hasMapLinks = apple || google;
 const appleMapsUrl = apple ? apple : '';
 const googleMapsUrl = google ? google : '';
@@ -42,44 +52,44 @@ const hours = frontmatter?.hours;
       
         <!-- Scrollable Content -->
         <div id="scrollable-content" class="overflow-x-auto whitespace-nowrap hide-scrollbar">
-          <div class="inline-flex gap-4">
-        {
-          link && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={link} target="_blank" rel="noopener noreferrer">
-              {linkText}
-              <Icon name="tabler:link" size="25px" title="website" />Website
-            </a>
-          )
-        }
-        {
-          instagram && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={instagram} target="_blank" rel="noopener noreferrer">
-              {instagramText}
-              <Icon name="lineicons:instagram" size="25px" title="instagram" />Instagram
-            </a>
-          )
-        }
-        {
-          facebook && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={facebook} target="_blank" rel="noopener noreferrer">
-              {facebookText}
-              <Icon name="tabler:brand-facebook" size="25px" title="facebook" />Facebook
-            </a>
-          )
-        }
-        {
-          youtube && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={youtube} target="_blank" rel="noopener noreferrer">
-              {youtubeText}
-              <Icon name="tabler:brand-youtube" size="25px" title="youtube" />YouTube
-            </a>
-          )
-        }
+          <div class="inline-flex gap-4">   
         {
           phone && (
             <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={phone}>
               {phoneText}
               <Icon name="tabler:phone" size="25px" title="phone" />Call Now
+            </a>
+          )
+        }
+        {
+          textorder && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={textorder}>
+              {textorderText}
+              <Icon name="tabler:message" size="25px" title="textorder" />Text to Order
+            </a>
+          )
+        }
+        {
+          orderonline && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={orderonline}>
+              {orderonlineText}
+              <Icon name="lineicons:basket-shopping-3" size="25px" title="orderonline" />Order Online
+            </a>
+          )
+        }
+        {
+          doordash && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={doordash} target="_blank" rel="noopener noreferrer">
+              {doordashText}
+              <Icon name="simple-icons:doordash" size="25px" title="doordash" />DoorDash
+            </a>
+          )
+        }
+        {
+          ubereats && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={ubereats} target="_blank" rel="noopener noreferrer">
+              {ubereatsText}
+              <Icon name="simple-icons:ubereats" size="25px" title="ubereats" />UberEats
             </a>
           )
         }
@@ -98,7 +108,47 @@ const hours = frontmatter?.hours;
               </a>
             </div>
           )
-        }       
+        } 
+        {
+          link && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={link} target="_blank" rel="noopener noreferrer">
+              {linkText}
+              <Icon name="tabler:link" size="25px" title="website" />Website
+            </a>
+          )
+        }
+        {
+          instagram && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={instagram} target="_blank" rel="noopener noreferrer">
+              {instagramText}
+              <Icon name="simple-icons:instagram" size="25px" title="instagram" />Instagram
+            </a>
+          )
+        }
+        {
+          facebook && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={facebook} target="_blank" rel="noopener noreferrer">
+              {facebookText}
+              <Icon name="simple-icons:facebook" size="25px" title="facebook" />Facebook
+            </a>
+          )
+        }
+        {
+          youtube && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={youtube} target="_blank" rel="noopener noreferrer">
+              {youtubeText}
+              <Icon name="simple-icons:youtube" size="25px" title="youtube" />YouTube
+            </a>
+          )
+        } 
+        {
+          tiktok && (
+            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={tiktok} target="_blank" rel="noopener noreferrer">
+              {tiktokText}
+              <Icon name="simple-icons:tiktok" size="25px" title="tiktok" />TikTok
+            </a>
+          )
+        }     
       </div></div>
       <div id="right-arrow" class="hidden absolute -right-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
         <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />

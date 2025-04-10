@@ -5,13 +5,17 @@ featured: false
 tags:
     - 
 description: 
+phone: tel:
+textorder: sms:
+orderonline: 
+doordash: 
+ubereats: 
+apple: 
+google: 
 link: 
 instagram: 
 facebook: 
 youtube: 
-phone: tel:
-apple: 
-google: 
 hours:
     sunday: 
     monday: 
