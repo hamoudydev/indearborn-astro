@@ -11,25 +11,8 @@ facebook:
 youtube: 
 phone: tel:
 apple: 
-location: 
+google: 
 
-dearbornphone: 
-dearbornlocation: 
-
-heightsphone: 
-heightslocation:
-
-eastphone: 
-eastlocation: 
-
-westphone: 
-westlocation: 
-
-storefrontphone:
-storefrontlocation:
-
-truckphone: 
-trucklocation:
 ---
 
 ## Hours
