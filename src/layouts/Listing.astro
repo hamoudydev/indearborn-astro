@@ -84,30 +84,20 @@ const googleMapsUrl = google ? google : '';
         }
         {
           hasMapLinks && (
-            <div id="map-link-container" class="inline-flex">
-              <!-- Only render one link initially based on the server-side detection -->
-              {
-                Astro.request.headers.get('user-agent')?.includes('Macintosh') && appleMapsUrl ? (
-                  <a id="apple-map-link"
-                     class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
-                     href={appleMapsUrl}
-                     target="_blank"
-                     rel="noopener noreferrer">
-                    <Icon name="tabler:navigation" size="25px" title="Apple Maps" /> Get Directions
-                  </a>
-                ) : googleMapsUrl ? (
-                  <a id="google-map-link"
-                     class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
-                     href={googleMapsUrl}
-                     target="_blank"
-                     rel="noopener noreferrer">
-                    <Icon name="tabler:navigation" size="25px" title="Google Maps" /> Get Directions
-                  </a>
-                ) : null
-              }
+            <div id="map-link-container" 
+                 data-apple={appleMapsUrl}
+                 data-google={googleMapsUrl}
+                 class="inline-flex">
+              <!-- Initial content will be replaced by JavaScript -->
+              <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+                 href={googleMapsUrl}
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <Icon name="tabler:navigation" size="25px" title="Directions" /> Get Directions
+              </a>
             </div>
           )
-        }        
+        }       
       </div></div>
       <div id="right-arrow" class="hidden absolute -right-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
         <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />
@@ -166,28 +156,27 @@ const googleMapsUrl = google ? google : '';
   });
 </script>
 <script is:inline>
-    // Client-side correction for map link
     const mapLinkContainer = document.getElementById('map-link-container');
     if (mapLinkContainer) {
-      const isAppleDevice = () => {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      };
+      const isAppleDevice = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                              (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-      const appleUrl = `{appleMapsUrl}`;
-      const googleUrl = `{googleMapsUrl}`;
+      const appleUrl = mapLinkContainer.dataset.apple;
+      const googleUrl = mapLinkContainer.dataset.google;
       
-      // Only modify if we need to switch from server-side guess
-      if ((isAppleDevice() && appleUrl && !mapLinkContainer.querySelector('#apple-map-link')) ||
-          (!isAppleDevice() && googleUrl && !mapLinkContainer.querySelector('#google-map-link'))) {
-        
-        mapLinkContainer.innerHTML = isAppleDevice() && appleUrl ? `
+      if (appleUrl || googleUrl) {
+        // Navigation icon SVG (same as tabler:navigation)
+        const navIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+        </svg>`;
+
+        const linkHtml = isAppleDevice() && appleUrl ? `
           <a id="apple-map-link"
              class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
-             href="${appleUrl.replace('https://', 'maps://')}"
+             href="#"
              target="_blank"
              rel="noopener noreferrer">
-            <Icon name="tabler:navigation" size="25px" title="Apple Maps" /> Get Directions
+            ${navIcon} Get Directions
           </a>
         ` : googleUrl ? `
           <a id="google-map-link"
@@ -195,9 +184,21 @@ const googleMapsUrl = google ? google : '';
              href="${googleUrl}"
              target="_blank"
              rel="noopener noreferrer">
-            <Icon name="tabler:navigation" size="25px" title="Google Maps" /> Get Directions
+            ${navIcon} Get Directions
           </a>
         ` : '';
+        
+        mapLinkContainer.innerHTML = linkHtml;
+
+        if (isAppleDevice() && appleUrl) {
+          document.getElementById('apple-map-link')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = appleUrl.replace('https://', 'maps://');
+            setTimeout(() => {
+              if (!document.hidden) window.open(appleUrl, '_blank');
+            }, 500);
+          });
+        }
       }
     }
 </script>
