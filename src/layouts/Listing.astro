@@ -12,40 +12,17 @@ const instagram = frontmatter?.instagram;
 const facebook = frontmatter?.facebook;
 const youtube = frontmatter?.youtube;
 const phone = frontmatter?.phone;
-const eastphone = frontmatter?.eastphone;
-const westphone = frontmatter?.westphone;
-const dearbornphone = frontmatter?.dearbornphone;
-const heightsphone = frontmatter?.heightsphone;
-const storefrontphone = frontmatter?.storefrontphone;
-const truckphone = frontmatter?.truckphone;
-const apple = frontmatter?.apple;
-const google = frontmatter?.google;
-const dearbornlocation = frontmatter?.dearbornlocation;
-const heightslocation = frontmatter?.heightslocation;
-const eastlocation = frontmatter?.eastlocation;
-const westlocation = frontmatter?.westlocation;
-const storefront = frontmatter?.storefront;
-const truck = frontmatter?.truck;
+const apple= frontmatter?.apple;
+const google= frontmatter?.google;
 const description = frontmatter?.description;
 const linkText = link?.replace(/^.*/, "");
 const instagramText = instagram?.replace(/^.*/, "");
 const facebookText = facebook?.replace(/^.*/, "");
 const youtubeText = youtube?.replace(/^.*/, "");
 const phoneText = phone?.replace(/^.*/, "");
-const dearbornphoneText = dearbornphone?.replace(/^.*/, "");
-const heightsphoneText = heightsphone?.replace(/^.*/, "");
-const eastphoneText = eastphone?.replace(/^.*/, "");
-const westphoneText = westphone?.replace(/^.*/, "");
-const storefrontphoneText = storefrontphone?.replace(/^.*/, "");
-const truckphoneText = truckphone?.replace(/^.*/, "");
-const appleText = apple?.replace(/^.*/, "");
-const googleText = google?.replace(/^.*/, "");
-const dearbornlocationText = dearbornlocation?.replace(/^.*/, "");
-const heightslocationText = heightslocation?.replace(/^.*/, "");
-const eastlocationText = eastlocation?.replace(/^.*/, "");
-const westlocationText = westlocation?.replace(/^.*/, "");
-const storefrontText = storefront?.replace(/^.*/, "");
-const truckText = truck?.replace(/^.*/, "");
+const hasMapLinks = apple || google;
+const appleMapsUrl = apple ? apple : '';
+const googleMapsUrl = google ? google : '';
 ---
 
 <BaseLayout>
@@ -106,117 +83,31 @@ const truckText = truck?.replace(/^.*/, "");
           )
         }
         {
-          apple && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={apple} target="_blank" rel="noopener noreferrer">
-              {appleText}
-              <Icon name="tabler:navigation" size="25px" title="apple maps" />Apple Maps
-            </a>
+          hasMapLinks && (
+            <div id="map-link-container" class="inline-flex">
+              <!-- Only render one link initially based on the server-side detection -->
+              {
+                Astro.request.headers.get('user-agent')?.includes('Macintosh') && appleMapsUrl ? (
+                  <a id="apple-map-link"
+                     class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+                     href={appleMapsUrl}
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    <Icon name="tabler:navigation" size="25px" title="Apple Maps" /> Get Directions
+                  </a>
+                ) : googleMapsUrl ? (
+                  <a id="google-map-link"
+                     class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+                     href={googleMapsUrl}
+                     target="_blank"
+                     rel="noopener noreferrer">
+                    <Icon name="tabler:navigation" size="25px" title="Google Maps" /> Get Directions
+                  </a>
+                ) : null
+              }
+            </div>
           )
-        }
-        {
-          google && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={google} target="_blank" rel="noopener noreferrer">
-              {googleText}
-              <Icon name="tabler:map-pin" size="25px" title="google" />Google Maps
-            </a>
-          )
-        }
-        {
-          dearbornphone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornphone}>
-              {dearbornphoneText}
-              <Icon name="tabler:phone" size="25px" title="phone" />Dearborn
-            </a>
-          )
-        }
-        {
-          dearbornlocation && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={dearbornlocation} target="_blank" rel="noopener noreferrer">
-              {dearbornlocationText}
-              <Icon name="tabler:location" size="25px" title="location" />Dearborn
-            </a>
-          )
-        }
-        {
-          eastphone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={eastphone}>
-              {eastphoneText}
-              <Icon name="tabler:phone" size="25px" title="phone" />East Dearborn
-            </a>
-          )
-        }
-        {
-          eastlocation && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={eastlocation} target="_blank" rel="noopener noreferrer">
-              {eastlocationText}
-              <Icon name="tabler:location" size="25px" title="location" />East Dearborn
-            </a>
-          )
-        }
-        {
-          westphone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={westphone}>
-              {westphoneText}
-              <Icon name="tabler:phone" size="25px" title="phone" />West Dearborn
-            </a>
-          )
-        }
-        {
-          westlocation && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={westlocation} target="_blank" rel="noopener noreferrer">
-              {westlocationText}
-              <Icon name="tabler:location" size="25px" title="location" />West Dearborn
-            </a>
-          )
-        }
-        {
-          heightsphone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={heightsphone}>
-              {heightsphoneText}
-              <Icon name="tabler:phone" size="25px" title="phone" />Dearborn Heights
-            </a>
-          )
-        }
-        {
-          heightslocation && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={heightslocation} target="_blank" rel="noopener noreferrer">
-              {heightslocationText}
-              <Icon name="tabler:location" size="25px" title="location" />Dearborn Heights
-            </a>
-          )
-        }
-        {
-          storefrontphone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={storefrontphone}>
-              {storefrontphoneText}
-              <Icon name="tabler:phone" size="25px" title="phone" />Storefront
-            </a>
-          )
-        }
-        {
-          storefront && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={storefront} target="_blank" rel="noopener noreferrer">
-              {storefrontText}
-              <Icon name="tabler:location" size="25px" title="location" />Storefront
-            </a>
-          )
-        }
-        {
-          truckphone && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={truckphone}>
-              {truckphoneText}
-              <Icon name="tabler:phone" size="25px" title="phone" />Truck
-            </a>
-          )
-        }
-        {
-          truck && (
-            <a class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded" href={truck} target="_blank" rel="noopener noreferrer">
-              {truckText}
-              <Icon name="tabler:location" size="25px" title="location" />Truck
-            </a>
-          )
-        }
+        }        
       </div></div>
       <div id="right-arrow" class="hidden absolute -right-6 top-1/2 transform -translate-y-1/2 bg-primary-500 p-2 rounded-full shadow-lg cursor-pointer">
         <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />
@@ -272,5 +163,55 @@ const truckText = truck?.replace(/^.*/, "");
         behavior: 'smooth'
       });
     });
+  });
+</script>
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    // ... (keep your existing scroll functionality)
+
+    // Client-side correction for map link
+    const mapLinkContainer = document.getElementById('map-link-container');
+    if (mapLinkContainer) {
+      const isAppleDevice = () => {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      };
+
+      const appleUrl = `{appleMapsUrl}`;
+      const googleUrl = `{googleMapsUrl}`;
+      
+      // Only modify if we need to switch from server-side guess
+      if ((isAppleDevice() && appleUrl && !mapLinkContainer.querySelector('#apple-map-link')) ||
+          (!isAppleDevice() && googleUrl && !mapLinkContainer.querySelector('#google-map-link'))) {
+        
+        mapLinkContainer.innerHTML = isAppleDevice() && appleUrl ? `
+          <a id="apple-map-link"
+             class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+             href="${appleUrl}"
+             target="_blank"
+             rel="noopener noreferrer">
+            <icon name="tabler:navigation" size="25px" title="Apple Maps" /> Get Directions
+          </a>
+        ` : googleUrl ? `
+          <a id="google-map-link"
+             class="inline-flex items-center gap-1 font-medium px-2.5 py-1 border-2 border-black rounded"
+             href="${googleUrl}"
+             target="_blank"
+             rel="noopener noreferrer">
+            <icon name="tabler:navigation" size="25px" title="Google Maps" /> Get Directions
+          </a>
+        ` : '';
+        
+        // Add Apple Maps special handling if needed
+        if (isAppleDevice() && appleUrl) {
+          document.getElementById('apple-map-link')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = appleUrl.includes('maps.apple.com') 
+              ? appleUrl.replace('https://', 'maps://')
+              : appleUrl;
+          });
+        }
+      }
+    }
   });
 </script>
