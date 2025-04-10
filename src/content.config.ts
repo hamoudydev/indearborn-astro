@@ -4,6 +4,17 @@ import { sheetLoad } from "@lib/loaders/sheets";
 import { mockLoader } from "@ascorbic/mock-loader";
 import { glob } from 'astro/loaders';
 
+// Define hours schema
+const hoursSchema = z.object({
+  sunday: z.string().optional(),
+  monday: z.string().optional(),
+  tuesday: z.string().optional(),
+  wednesday: z.string().optional(),
+  thursday: z.string().optional(),
+  friday: z.string().optional(),
+  saturday: z.string().optional(),
+}).optional();
+
 const directorySchema = (imageSchema: z.ZodTypeAny) =>
   z.object({
     title: z.string().optional(),
@@ -19,6 +30,7 @@ const directorySchema = (imageSchema: z.ZodTypeAny) =>
     apple: z.string().url().optional(),
     google: z.string().url().optional(),
     featured: z.boolean().default(false),
+    hours: hoursSchema, // Add hours schema
   });
 
 let directory;

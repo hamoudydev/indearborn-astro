@@ -2,6 +2,7 @@
 import "@fontsource/gabarito";
 import BaseLayout from "./BaseLayout.astro";
 import AppProse from "../components/app/Prose.astro";
+import OpeningHours from "../components/directory/OpeningHours.astro";
 const { frontmatter } = Astro.props;
 import themeConfig from "@util/themeConfig";
 import { Icon } from "astro-icon/components";
@@ -23,6 +24,7 @@ const phoneText = phone?.replace(/^.*/, "");
 const hasMapLinks = apple || google;
 const appleMapsUrl = apple ? apple : '';
 const googleMapsUrl = google ? google : '';
+const hours = frontmatter?.hours;
 ---
 
 <BaseLayout>
@@ -31,7 +33,6 @@ const googleMapsUrl = google ? google : '';
       <div class="flex justify-between items-center">
         <h1 class="font-bold text-4xl">{title}</h1>
       </div>
-      <p class="text-gray-600 mt-2.5 mb-2.5">{description}</p>
 
       <div class="relative mt-5 mb-2.5">
         <!-- Left Arrow -->
@@ -103,7 +104,13 @@ const googleMapsUrl = google ? google : '';
         <Icon name="tabler:arrow-right" color="white" size="15px" title="right" />
       </div>
     </div>
-    <p class="mt-10" />
+    <p class="mt-8" />
+    <p class="text-gray-600 mt-2.5 mb-2.5">{description}</p>
+    {hours && (
+      <div class="mt-8 mb-8">
+        <OpeningHours hours={hours} />
+      </div>
+    )}
     <AppProse>
       <slot />
     </AppProse>

@@ -1,0 +1,31 @@
+---
+// components/OpeningHours.astro
+const { hours } = Astro.props;
+const days = [
+  { name: 'Sunday', key: 'sunday' },
+  { name: 'Monday', key: 'monday' },
+  { name: 'Tuesday', key: 'tuesday' },
+  { name: 'Wednesday', key: 'wednesday' },
+  { name: 'Thursday', key: 'thursday' },
+  { name: 'Friday', key: 'friday' },
+  { name: 'Saturday', key: 'saturday' }
+];
+---
+
+<div class="border rounded-lg p-4 mt-6 bg-gray-50">
+  <h3 class="font-bold text-lg mb-3">Opening Hours</h3>
+  <ul class="space-y-2">
+    {days.map(day => {
+      const isToday = new Date().getDay() === days.indexOf(day);
+      return (
+        <li class={`flex ${isToday ? 'font-semibold text-emerald-500' : ''}`}>
+          <span class="w-28">{day.name}</span>
+          <span>
+            {hours[day.key] || <span class="text-gray-500">Closed</span>}
+            {isToday && <span class="ml-2 text-xs bg-emerald-100 text-emerald-500 px-2 py-0.5 rounded">Today</span>}
+          </span>
+        </li>
+      );
+    })}
+  </ul>
+</div>

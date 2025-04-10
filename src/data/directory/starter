@@ -12,15 +12,12 @@ youtube:
 phone: tel:
 apple: 
 google: 
-
+hours:
+    sunday: 
+    monday: 
+    tuesday: 
+    wednesday: 
+    thursday: 
+    friday: 
+    saturday: 
 ---
-
-## Hours
-
-- Sunday: 
-- Monday: 
-- Tuesday: 
-- Wednesday: 
-- Thursday: 
-- Friday: 
-- Saturday: 
